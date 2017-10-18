@@ -4,7 +4,7 @@ import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
   { path: 'signin', component: AuthComponent },
-  { path: '', redirectTo: '/signin', pathMatch: 'full' }
+  { path: '', redirectTo: 'signin', pathMatch: 'full' }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
