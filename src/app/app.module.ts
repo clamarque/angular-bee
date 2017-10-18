@@ -5,19 +5,20 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-//import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-//import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
-
-import { AppComponent } from './app.component';
-
 import * as firebase from 'firebase/app';
+
+import { routing } from './app-routing.module'; 
 
 import { environment } from '../environments/environment';
 import { AuthService } from './shared/auth.service';
 
+import { AppComponent } from './app.component';
+import { AuthComponent } from './auth/auth.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +26,8 @@ import { AuthService } from './shared/auth.service';
     HttpModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-bee'),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    routing
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
