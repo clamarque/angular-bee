@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -7,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService) {
 
-  signIn() {
-    console.log("SignIn");
+   }
+
+  submit(formData) {
+    console.log(formData);
+    this.auth.connectToDb(formData.email, formData.password, (error)=> {
+      if (error) {
+        console.log(error);
+      }
+      else {
+        console.log("ok");
+      }
+    });
   }
 
   ngOnInit() {
