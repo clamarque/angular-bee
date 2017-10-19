@@ -15,16 +15,18 @@ import { environment } from '../environments/environment';
 import { AuthService } from './shared/auth.service';
 
 import { AppComponent } from './app.component';
-import { AuthComponent } from './auth/auth.component';
+import { SignInComponent } from './signin/signin.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found.component';
+import { SignUpComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent,
+    SignInComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

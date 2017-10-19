@@ -1,17 +1,17 @@
 <form (ngSubmit)='submit(formData.value)' #formData='ngForm'>
   <div class="form-container">
 
-    <label for='email'>Email</label>
     <mat-form-field>
-      <input matInput placeholder="email" name="email" [ngModel]="email" required>
+      <input matInput placeholder="Email" name="email" [ngModel]="email" required>
     </mat-form-field>
 
-    <label for='password'>Password</label>
     <mat-form-field>
-      <input matInput placeholder="Enter your password" name="password" [ngModel]="password" [type]="hide ? 'password' : 'text'"
+      <input matInput placeholder="Password" name="password" [ngModel]="password" [type]="hide ? 'password' : 'text'"
         required>
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
     </mat-form-field>
   </div>
   <button mat-raised-button type='submit'>Sign in</button>
 </form>
+
+<button mat-raised-button (click)='createAccount()'>Sign up</button>

@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
 import { SharedModule } from '../shared/shared.module';
+import { Router } from '@angular/router';  
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.sass']
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.sass']
 })
-export class AuthComponent implements OnInit {
+export class SignInComponent implements OnInit {
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private router: Router) {
 
    }
 
@@ -25,7 +26,10 @@ export class AuthComponent implements OnInit {
     });
   }
 
+  createAccount() {
+    this.router.navigate(['/signup']);
+  }
+
   ngOnInit() {
-    console.log('hello signin')
   }
 }

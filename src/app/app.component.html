@@ -1,7 +1,8 @@
 <mat-toolbar color='primary'>
   <a routerLink="/">Angular Bee</a>
   <span class="example-spacer"></span>
-  <a routerLink="/signin">Se connecter</a>
+  <a routerLink="/signin" [hidden]="isConnected">Se connecter</a>
+  <a (click)="logout()" [hidden]="!isConnected">Se déconnecter</a>
 </mat-toolbar>
 
 <div id="app">
