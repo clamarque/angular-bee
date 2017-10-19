@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatToolbarModule, MatCheckboxModule} from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatCheckboxModule,MatInputModule, MatFormFieldModule} from '@angular/material';
 
 @NgModule({
-  imports: [FormsModule, MatCheckboxModule, MatToolbarModule],
-  exports: [FormsModule, MatCheckboxModule, MatToolbarModule],
+  imports: [FormsModule, MatCheckboxModule, MatButtonModule, MatToolbarModule, MatInputModule, MatFormFieldModule],
+  exports: [FormsModule, MatCheckboxModule, MatButtonModule, MatToolbarModule, MatInputModule, MatFormFieldModule],
 })
+
 export class SharedModule { }

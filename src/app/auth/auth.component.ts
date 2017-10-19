@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
+import { SharedModule } from '../shared/shared.module';
 
 @Component({
   selector: 'app-auth',
