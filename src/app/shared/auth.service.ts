@@ -20,11 +20,22 @@ export class AuthService {
         .catch(error => callback(error));
     }
 
+    getCurrentEmail() {
+        return firebase.auth().currentUser;
+    } 
+
     connectToDb(email: string, password: string, callback: any) {
         return firebase.auth().signInWithEmailAndPassword(email, password)
         .then(success => callback())
         .catch(error => callback(error));
     }
+
+    changePassword(password: string, callback: any) {
+        return this.afAuth.auth.currentUser.updatePassword(password)
+        .then(success => callback())
+        .catch(error => callback(error));
+    }
+
 
     isLoggin() {
         return this.afAuth.authState.map((auth)=> {

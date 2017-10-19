@@ -3,6 +3,8 @@
   <span class="example-spacer"></span>
   <a routerLink="/signin" [hidden]="isConnected">Se connecter</a>
   <a (click)="logout()" [hidden]="!isConnected">Se déconnecter</a>
+  <a routerLink="/profile" [hidden]="!isConnected"><mat-icon>settings</mat-icon></a>
+  
 </mat-toolbar>
 
 <div id="app">
