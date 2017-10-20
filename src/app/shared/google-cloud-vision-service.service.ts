@@ -12,19 +12,21 @@ export class GoogleCloudVisionServiceService {
   getLabels(base64Image) {
 
     const body = {
-
-      "request": [
+      "requests": [
         {
+          "image": {
+            "content": base64Image
+          },
           "features": [
             {
-              "type": "LABEL_DETECTION"
+              "type": "WEB_DETECTION"
             }
           ],
-          "images": {
+          /*"image": {
             "source": {
-              "imageUri": base64Image
+              "content": base64Image
             }
-          }
+          } */
         }
       ]
     }

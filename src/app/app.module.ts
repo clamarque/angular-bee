@@ -13,6 +13,7 @@ import { routing } from './app-routing.module';
 
 import { environment } from '../environments/environment';
 import { AuthService } from './shared/auth.service';
+import { GoogleCloudVisionServiceService } from './shared/google-cloud-vision-service.service';
 import { AuthGuard } from './shared/auth.guard';
 
 import { AppComponent } from './app.component';
@@ -48,7 +49,7 @@ import { HistoryComponent } from './history/history.component';
     AngularFireAuthModule,
     routing
   ],
-  providers: [AuthGuard, AuthService, AngularFireDatabase],
+  providers: [AuthGuard, AuthService, AngularFireDatabase, GoogleCloudVisionServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
