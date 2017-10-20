@@ -1,8 +1,9 @@
-<form (ngSubmit)='submit(formData.value)' #formData='ngForm'>
+<div class="flex">
+  <form (ngSubmit)='submit(formData.value)' #formData='ngForm'>
     <div class="form-container">
-  
+
       <div>{{email}}</div>
-  
+
       <mat-form-field>
         <input matInput placeholder="Password" name="password" [ngModel]="password" [type]="hide ? 'password' : 'text'"
           required>
@@ -11,4 +12,4 @@
     </div>
     <button mat-raised-button type='submit'>Save</button>
   </form>
-  
+</div> 
