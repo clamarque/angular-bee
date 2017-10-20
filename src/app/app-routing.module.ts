@@ -10,7 +10,7 @@ import { AuthGuard } from './shared/index';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'declaration', component:DeclarationComponent },
+  { path: 'declaration', component:DeclarationComponent, canActivate: [AuthGuard] },
   { path: 'signin', component: SignInComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]  },
