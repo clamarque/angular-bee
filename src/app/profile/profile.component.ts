@@ -35,15 +35,7 @@ export class ProfileComponent implements OnInit {
       this.email = user.email;
 
     // REGARDER AVEC https://angular.io/guide/router POUR REDIRIGER AUTOMATIQUEMENT LE USER SI IL NA PAS LES DROITS 
-    this.authService.isLoggin().subscribe(authStatus => {
-      if (authStatus == true) {
-        this.router.navigate(['/home']);
-        return this.isConnected = true;
-      }
-      else {
-        return this.isConnected = false;
-      }
-    });
+
   }
 
 }

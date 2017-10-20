@@ -1,10 +1,12 @@
 <mat-toolbar color='primary'>
-  <a routerLink="/">Angular Bee</a>
+  <a routerLink="/"><button mat-button>Angular Bee</button></a>
   <span class="example-spacer"></span>
-  <a routerLink="/signin" [hidden]="isConnected">Se connecter</a>
-  <a (click)="logout()" [hidden]="!isConnected">Se déconnecter</a>
-  <a routerLink="/profile" [hidden]="!isConnected"><mat-icon>settings</mat-icon></a>
-  
+  <a routerLink="/signin" [hidden]="isConnected"><button mat-button>Se connecter</button></a>
+  <button mat-button [matMenuTriggerFor]="menu" [hidden]="!isConnected">Profile</button>
+  <mat-menu #menu="matMenu">
+    <a routerLink="/profile"><button mat-menu-item><mat-icon>settings</mat-icon>Parameter</button></a>
+    <a (click)="logout()"><button mat-menu-item>Log out</button></a>
+  </mat-menu>
 </mat-toolbar>
 
 <div id="app">
