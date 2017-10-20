@@ -13,6 +13,7 @@ import { routing } from './app-routing.module';
 
 import { environment } from '../environments/environment';
 import { AuthService } from './shared/auth.service';
+import { AuthGuard } from './shared/auth.guard';
 
 import { AppComponent } from './app.component';
 import { SignInComponent } from './signin/signin.component';
@@ -41,8 +42,7 @@ import { ProfileComponent } from './profile/profile.component';
     AngularFireAuthModule,
     routing
   ],
-  providers: [AuthService,
-    AngularFireDatabase],
+  providers: [AuthGuard, AuthService, AngularFireDatabase],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
