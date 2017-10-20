@@ -20,10 +20,7 @@ export class AppComponent {
   logout() {
     this.router.navigate(['/home']);
     this.authService.logout();
-<<<<<<< HEAD
     this.snackBar.open('Already Gone ? We Hope to see you again soon', '', { duration: 5000 })
-=======
->>>>>>> af317dc5ff9cffbd2f5bf29d7109c5822ec4a276
   }
 
   ngOnInit() {
