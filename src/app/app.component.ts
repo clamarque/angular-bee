@@ -17,7 +17,6 @@ export class AppComponent {
   logout() {
     this.router.navigate(['/home']);
     this.authService.logout();
-
   }
 
   ngOnInit() {

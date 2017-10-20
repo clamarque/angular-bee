@@ -12,8 +12,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    let url: string = state.url;
-    return this.checkLogin(url);
+    return this.checkLogin();
   }
 
   canActivateChild(
@@ -22,7 +21,7 @@ export class AuthGuard implements CanActivate {
       return this.canActivate(route, state);
     }
 
-  checkLogin(url: string): Observable<boolean> {
+  checkLogin(): Observable<boolean> {
     return this.af.authState.map(auth => {
       if (auth === null) {
         this.router.navigate(['/signin'])
