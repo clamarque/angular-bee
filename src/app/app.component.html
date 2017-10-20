@@ -1,7 +1,7 @@
 <mat-toolbar color='primary'>
   <a routerLink="/"><button mat-button>Angular Bee</button></a>
   <span class="example-spacer"></span>
-  <a routerLink="/signin" [hidden]="isConnected"><button mat-button>Se connecter</button></a>
+  <a routerLink="/signin" [hidden]="isConnected"><button mat-button>Sign in</button></a>
   <button mat-button [matMenuTriggerFor]="menu" [hidden]="!isConnected">Profile</button>
   <mat-menu #menu="matMenu">
     <a routerLink="/profile"><button mat-menu-item><mat-icon>settings</mat-icon>Parameter</button></a>
