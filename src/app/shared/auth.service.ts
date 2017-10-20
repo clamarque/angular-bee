@@ -30,6 +30,10 @@ export class AuthService {
         .catch(error => callback(error));
     }
 
+    connectToG(callback:any) {
+        return firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider);
+    }
+
     changePassword(password: string, callback: any) {
         return this.afAuth.auth.currentUser.updatePassword(password)
         .then(success => callback())
@@ -38,11 +42,11 @@ export class AuthService {
 
 
     isLoggin() {
-        return this.afAuth.authState.map((auth)=> {
-            if (auth != null) return true;
-            else return false;
+        return this.afAuth.authState.map(auth=> {
+            return auth != null ? true : false;
         }); 
     }
+
 
     logout() {
         return this.afAuth.auth.signOut();

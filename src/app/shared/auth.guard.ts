@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { AuthService } from './auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: AuthService, private router: Router, private af: AngularFireAuth) { }
+  constructor(private router: Router, private af: AngularFireAuth) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    let url: string = state.url;
-    return this.checkLogin(url);
+    return this.checkLogin();
   }
 
   canActivateChild(
@@ -22,7 +21,7 @@ export class AuthGuard implements CanActivate {
       return this.canActivate(route, state);
     }
 
-  checkLogin(url: string): Observable<boolean> {
+  checkLogin(): Observable<boolean> | Promise<boolean> | boolean {
     return this.af.authState.map(auth => {
       if (auth === null) {
         this.router.navigate(['/signin'])

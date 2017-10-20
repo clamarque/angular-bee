@@ -12,5 +12,6 @@ export const environment = {
     projectId: "angular-bee",
     storageBucket: "angular-bee.appspot.com",
     messagingSenderId: "62940649793"
-  }
+  },
+  googleCloudVisionAPIKey: "AIzaSyDhJaKBDwSmxOcFt7YdFaU6_kku3B8fIXA"
 };

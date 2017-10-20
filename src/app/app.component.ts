@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from './shared/auth.service';
 import { Router } from '@angular/router';  
+import { SharedModule } from './shared/shared.module';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+
 
 @Component({
   selector: 'app-root',
@@ -10,14 +13,14 @@ import { Router } from '@angular/router';
 export class AppComponent {
   public isConnected : boolean = false;
 
-  constructor(private authService : AuthService, private router: Router) {
+  constructor(private authService : AuthService, private router: Router, private snackBar: MatSnackBar) {
 
   }
 
   logout() {
     this.router.navigate(['/home']);
     this.authService.logout();
-
+    this.snackBar.open('Already Gone ? We Hope to see you again soon', '', { duration: 5000 })
   }
 
   ngOnInit() {

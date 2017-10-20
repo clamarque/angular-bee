@@ -5,10 +5,12 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found.component';
 import { SignUpComponent } from './signup/signup.component';
 import { ProfileComponent } from './profile/profile.component';
-import { AuthGuard } from './shared/auth.guard';
+import { DeclarationComponent } from './declaration/declaration.component';
+import { AuthGuard } from './shared/index';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'declaration', component:DeclarationComponent },
   { path: 'signin', component: SignInComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]  },
