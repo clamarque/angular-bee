@@ -21,7 +21,11 @@ export class AuthGuard implements CanActivate {
       return this.canActivate(route, state);
     }
 
+<<<<<<< HEAD
   checkLogin(): Observable<boolean> | Promise<boolean> | boolean {
+=======
+  checkLogin(): Observable<boolean> {
+>>>>>>> af317dc5ff9cffbd2f5bf29d7109c5822ec4a276
     return this.af.authState.map(auth => {
       if (auth === null) {
         this.router.navigate(['/signin'])
