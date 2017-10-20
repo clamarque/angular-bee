@@ -23,6 +23,7 @@ import { SignUpComponent } from './signup/signup.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
 import { DeclarationComponent } from './declaration/declaration.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { DeclarationComponent } from './declaration/declaration.component';
     SignUpComponent,
     ProfileComponent,
     ContactComponent,
-    DeclarationComponent
+    DeclarationComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
