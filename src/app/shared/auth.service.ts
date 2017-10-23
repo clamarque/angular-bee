@@ -57,16 +57,13 @@ export class AuthService {
     logout() {
         return this.afAuth.auth.signOut();
     }
+
+    getUid() {
+        return this.uid;
+    }
     
     getResult() {
         return this.db.list('items/' + this.uid);
-    }
-
-    saveResult(image,results) {
-        return this.db.list('items/' + this.uid).push({
-            imageDate: image,
-            results: results
-        })
     }
 
 }

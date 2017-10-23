@@ -5,7 +5,6 @@
   <span class="example-spacer"></span>
   <a routerLink="/signin" [hidden]="isConnected"><button mat-button>Sign in</button></a>
   <button mat-button [matMenuTriggerFor]="menu" [ngStyle]="{display : !isConnected ? 'none' : ''}">Profile</button>
-  <a routerLink="/declaration" [hidden]="!isConnected">declaration</a>
   <mat-menu #menu="matMenu">
     <a routerLink="/profile"><button mat-menu-item><mat-icon>settings</mat-icon>Parameter</button></a>
     <a (click)="logout()"><button mat-menu-item><mat-icon>power_settings_new</mat-icon>Log out</button></a>
