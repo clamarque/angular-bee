@@ -6,12 +6,6 @@
 https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/example.component.ts
 -->
 
-<ul>
-  <li *ngFor="let item of items | async">
-      <img [src]="'data:image/png;base64,' + item.imageData"/>
-  </li>
-</ul>
-
 <div *ngIf="currentFileUpload" class="progress" style="width:400px">
 	<div class="progress-bar progress-bar-info progress-bar-striped"
 		role="progressbar" attr.aria-valuenow="{{progress.percentage}}"

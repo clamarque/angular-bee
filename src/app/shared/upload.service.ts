@@ -27,8 +27,9 @@ export class UploadService {
        },
        () => {
          // success
-         fileUpload.url = uploadTask.snapshot.downloadURL
-         fileUpload.name = fileUpload.file.name
+         fileUpload.url = uploadTask.snapshot.downloadURL;
+         fileUpload.name = fileUpload.file.name;
+         fileUpload.createdAt = new Date();         
          this.saveFileData(fileUpload, currentUid, results)
        }
      );

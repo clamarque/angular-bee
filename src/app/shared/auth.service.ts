@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -12,7 +11,7 @@ import * as firebase from 'firebase';
 export class AuthService {
     public uid: string = '';
 
-    constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
+    constructor(private afAuth: AngularFireAuth) {
         this.afAuth.authState.subscribe(auth => {
             console.log(auth.uid)
             if (auth) this.uid = auth.uid
@@ -58,12 +57,7 @@ export class AuthService {
         return this.afAuth.auth.signOut();
     }
 
-    getUid() {
+    getCurrentUid() {
         return this.uid;
     }
-    
-    getResult() {
-        return this.db.list('items/' + this.uid);
-    }
-
 }

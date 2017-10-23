@@ -7,25 +7,19 @@
       <!-- Position Column -->
       <ng-container matColumnDef="position">
         <mat-header-cell *matHeaderCellDef> Picture</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.image.name}} </mat-cell>
       </ng-container>
   
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Diagnostic </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        <mat-cell *matCellDef="let element"></mat-cell>        
       </ng-container>
   
       <!-- Weight Column -->
       <ng-container matColumnDef="weight">
         <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-      </ng-container>
-  
-      <!-- Color Column -->
-      <ng-container matColumnDef="symbol">
-        <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.image.date}} </mat-cell>
       </ng-container>
   
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

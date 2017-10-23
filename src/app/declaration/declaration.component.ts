@@ -3,7 +3,6 @@ import { GoogleCloudVisionServiceService } from '../shared/google-cloud-vision-s
 import { AuthService } from '../shared/index';
 import { UploadService } from '../shared/upload.service';
 import { Upload } from '../shared/upload';
-import { Observable } from 'rxjs/Observable';
 
 import * as firebase from 'firebase';
 
@@ -13,7 +12,6 @@ import * as firebase from 'firebase';
   styleUrls: ['./declaration.component.sass']
 })
 export class DeclarationComponent implements OnInit {
-  public items: Observable<any[]>;
   private storageRef;
   public selectedFiles: FileList;
   public currentFileUpload: Upload;
@@ -50,12 +48,7 @@ export class DeclarationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentUid = this.authService.getUid();
-
-    console.log('init')
-    this.items = this.authService.getResult().valueChanges();
-
-    console.log('items', this.items)
+    this.currentUid = this.authService.getCurrentUid();
     this.storageRef = firebase.storage().ref();    
   }
 
