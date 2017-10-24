@@ -19,6 +19,11 @@ export class DeclarationComponent implements OnInit {
   public currentUid;
   public onAnalyzed: boolean = false;
   public fileChosen: string = "";
+  public isAnalyzed: boolean = false;
+  public fileAnalyzedpercent: number;
+  public fileAnalyzedName: string;
+  public fileAnalyzedUrl: string;
+  public fileAnalyzedDate: string;
 
   constructor(private authService: AuthService, 
               private vision: GoogleCloudVisionServiceService,
@@ -41,9 +46,17 @@ export class DeclarationComponent implements OnInit {
         this.vision.getLabels(reader.result.split(',')[1]).subscribe(response => {
 
           console.log(response.json().responses);
-          this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress, this.currentUid, response.json().responses);
-        })
+          this.fileAnalyzedpercent = this.analyzePicture(response.json().responses);
+          this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress, this.currentUid, response.json().responses, this.fileAnalyzedpercent);
+          this.fileAnalyzedName = file.name;
+          console.log("URL : " + this.fileAnalyzedUrl);
+          this.isAnalyzed = true;
+        });
       }; 
+  }
+
+  analyzePicture(results: string) {
+    return 0;
   }
 
   ngOnInit() {

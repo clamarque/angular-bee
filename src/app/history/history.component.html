@@ -1,10 +1,12 @@
-<mat-list>
+<mat-list class="list-history">
   <mat-list-item *ngFor="let item of items | async">
     <img matListAvatar src="{{item.image.url}}" alt="{{item.image.name}}">
     <h3 matLine> {{item.image.name}} </h3>
     <p matLine>
-      <span> smtng </span>
-      <span class="demo-2"> -- qqchose </span>
+      {{item.date | date:'dd/MM/yyyy HH:mm'}}
     </p>
+    <button mat-icon-button>
+      {{item.percent}} %
+     </button>
   </mat-list-item>
 </mat-list>

@@ -27,7 +27,6 @@ export class HistoryComponent implements OnInit {
     console.log('init');
     this.currentUid = this.authService.getCurrentUid();
     this.items = this.db.list('items/' + this.currentUid).valueChanges();
-
     console.log(this.items);
   }
 
