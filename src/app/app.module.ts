@@ -1,3 +1,4 @@
+// MODULE
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -11,11 +12,14 @@ import * as firebase from 'firebase/app';
 
 import { routing } from './app-routing.module'; 
 
+// SERVICE
 import { environment } from '../environments/environment';
 import { AuthService } from './shared/auth.service';
 import { GoogleCloudVisionServiceService } from './shared/google-cloud-vision-service.service';
 import { AuthGuard } from './shared/auth.guard';
+import { UploadService } from './shared/upload.service';
 
+// COMPONENT
 import { AppComponent } from './app.component';
 import { SignInComponent } from './signin/signin.component';
 import { HomeComponent } from './home/home.component';
@@ -51,7 +55,12 @@ import { NestComponent } from './nest/nest.component';
     AngularFireAuthModule,
     routing
   ],
-  providers: [AuthGuard, AuthService, AngularFireDatabase, GoogleCloudVisionServiceService],
+  providers: [AuthGuard, 
+              AuthService, 
+              AngularFireDatabase, 
+              GoogleCloudVisionServiceService,
+              UploadService
+            ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

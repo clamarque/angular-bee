@@ -2,12 +2,21 @@
   declaration works!
 </p>
 
+<!-- VOIR POUR AVOIR LE CHOIX ENTRE UPLOAD FICHIER OU TULISER CAMERA DU DEVICE 
+https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/example.component.ts
+-->
+
+<div *ngIf="currentFileUpload" class="progress" style="width:400px">
+	<div class="progress-bar progress-bar-info progress-bar-striped"
+		role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+		aria-valuemin="0" aria-valuemax="100"
+		[ngStyle]="{width:progress.percentage+'%'}">
+		{{progress.percentage}}%</div>
+</div>
+ 
 <label class="btn btn-default"> <input type="file"
 	(change)="selectFile($event)">
 </label>
-
-<ul>
-  <li *ngFor="let item of items | async">
-      <img [src]="'data:image/png;base64,' + item.imageData"/>
-  </li>
-</ul>
+ 
+<button class="btn btn-success" [disabled]="!selectedFiles"
+	(click)="upload()">Upload</button>

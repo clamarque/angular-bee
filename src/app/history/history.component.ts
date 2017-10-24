@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { AuthService } from '../shared/index';
+import { Observable } from 'rxjs/Observable';
+import { DataSource } from '@angular/cdk/collections';
+import 'rxjs/add/observable/of';
 
 import * as firebase from 'firebase';
+
+export interface Data {}
 
 @Component({
   selector: 'app-history',
@@ -9,19 +15,47 @@ import * as firebase from 'firebase';
   styleUrls: ['./history.component.sass']
 })
 export class HistoryComponent implements OnInit {
-  userId : string;
+  private userId : string;
+  public items: Observable<any[]>;
+  public currentUid: string;
 
-  constructor(private db: AngularFireDatabase) { 
-    this.userId = firebase.auth().currentUser.uid;   
-    console.log("UserId : " + this.userId); 
+  myData: Array <any>;
+  dataSource: MyDataSource;
 
-    firebase.database().ref('/items/' + this.userId).once('value').then(function(snapshot) {
-      console.log(snapshot);
-      // ...
-    });
+  private displayedColumns = ['position', 'name', 'weight'];
+
+  constructor(private db: AngularFireDatabase, private authService: AuthService) { 
+   
   }
 
+  public getData() {
+    this.items
+      .subscribe(res => {
+        this.myData = res;
+        this.dataSource = new MyDataSource(this.myData);
+      });
+  }
+  
   ngOnInit() {
+    console.log('init');
+    this.currentUid = this.authService.getCurrentUid();
+    this.items = this.db.list('items/' + this.currentUid).valueChanges();;
+    //this.items = this.authService.getResult().valueChanges();
+    console.log(this.items);
+    this.getData();
   }
 
 }
+
+export class MyDataSource extends DataSource<any> {
+  constructor(private data: Data[]) {
+    super();
+  }
+   /** Connect function called by the table to retrieve one stream containing the data to render. */
+  connect(): Observable<Data[]> {
+    return Observable.of(this.data);
+  }
+
+  disconnect() {}
+
+  }

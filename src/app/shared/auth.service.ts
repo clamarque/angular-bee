@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -12,7 +11,7 @@ import * as firebase from 'firebase';
 export class AuthService {
     public uid: string = '';
 
-    constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
+    constructor(private afAuth: AngularFireAuth) {
         this.afAuth.authState.subscribe(auth => {
             if (auth != null) this.uid = auth.uid
         })
@@ -56,16 +55,8 @@ export class AuthService {
     logout() {
         return this.afAuth.auth.signOut();
     }
-    
-    getResult() {
-        return this.db.list('items/' + this.uid);
-    }
 
-    saveResult(image,results) {
-        return this.db.list('items/' + this.uid).push({
-            imageDate: image,
-            results: results
-        })
+    getCurrentUid() {
+        return this.uid;
     }
-
 }
