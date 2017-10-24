@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatToolbarModule, MatButtonModule, MatCheckboxModule,MatInputModule, 
   MatFormFieldModule, MatIconModule, MatGridListModule, MatMenuModule, 
-  MatSnackBarModule, MatTableModule } from '@angular/material';
+  MatSnackBarModule, MatListModule } from '@angular/material';
 
 @NgModule({
   imports: [FormsModule, MatCheckboxModule, MatButtonModule, MatToolbarModule, 
     MatInputModule, MatFormFieldModule, MatIconModule, MatGridListModule, MatMenuModule, 
-    MatSnackBarModule, MatTableModule],
+    MatSnackBarModule, MatListModule],
   exports: [FormsModule, MatCheckboxModule, MatButtonModule, MatToolbarModule, 
     MatInputModule, MatFormFieldModule, MatIconModule, MatGridListModule, MatMenuModule, 
-    MatSnackBarModule, MatTableModule]
+    MatSnackBarModule, MatListModule]
 })
 
 export class SharedModule { }
