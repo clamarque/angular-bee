@@ -19,6 +19,11 @@ export class DeclarationComponent implements OnInit {
   public currentUid;
   public onAnalyzed: boolean = false;
   public fileChosen: string = "";
+  public isAnalyzed: boolean = false;
+  public fileAnalyzedpercent: number;
+  public fileAnalyzedName: string;
+  public fileAnalyzedUrl: string;
+  public fileAnalyzedDate: string;
 
   constructor(private authService: AuthService, 
               private vision: GoogleCloudVisionServiceService,
@@ -42,8 +47,17 @@ export class DeclarationComponent implements OnInit {
 
           console.log(response.json().responses);
           this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress, this.currentUid, response.json().responses);
-        })
+          this.fileAnalyzedName = file.name;
+          this.fileAnalyzedpercent = this.analyzePicture(response.json().responses);
+
+          console.log("URL : " + this.fileAnalyzedUrl);
+          this.isAnalyzed = true;
+        });
       }; 
+  }
+
+  analyzePicture(results: string) {
+    return 0;
   }
 
   ngOnInit() {

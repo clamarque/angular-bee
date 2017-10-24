@@ -16,3 +16,18 @@ https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/exam
 	<mat-progress-bar mode="determinate" value="{{progress.percentage}}"></mat-progress-bar>
 	<div class="progressbar-text">{{progress.percentage}}%</div>
 </div>
+
+<div [hidden]="!isAnalyzed">
+	<mat-card class="card-bee">
+		<mat-card-header>
+			<mat-card-title>{{fileAnalyzedName}}</mat-card-title>
+			<mat-card-subtitle>{{fileAnalyzedDate}}</mat-card-subtitle>
+		</mat-card-header>
+		<img mat-card-image src="{{fileAnalyzedUrl}}" alt="Analyzed picture">
+		<mat-card-content>
+			<p>
+			{{fileAnalyzedpercent}}
+			</p>
+		</mat-card-content>
+	</mat-card>		
+</div>
