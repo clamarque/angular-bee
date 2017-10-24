@@ -46,10 +46,9 @@ export class DeclarationComponent implements OnInit {
         this.vision.getLabels(reader.result.split(',')[1]).subscribe(response => {
 
           console.log(response.json().responses);
-          this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress, this.currentUid, response.json().responses);
-          this.fileAnalyzedName = file.name;
           this.fileAnalyzedpercent = this.analyzePicture(response.json().responses);
-
+          this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress, this.currentUid, response.json().responses, this.fileAnalyzedpercent);
+          this.fileAnalyzedName = file.name;
           console.log("URL : " + this.fileAnalyzedUrl);
           this.isAnalyzed = true;
         });
