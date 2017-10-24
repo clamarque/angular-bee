@@ -17,6 +17,8 @@ export class DeclarationComponent implements OnInit {
   public currentFileUpload: Upload;
   public progress: {percentage: number} = {percentage: 0};
   public currentUid;
+  public onAnalyzed: boolean = false;
+  public fileChosen: string = "";
 
   constructor(private authService: AuthService, 
               private vision: GoogleCloudVisionServiceService,
@@ -24,9 +26,11 @@ export class DeclarationComponent implements OnInit {
 
   selectFile(event) {
     this.selectedFiles = event.target.files;
+    this.fileChosen = this.selectedFiles.item(0).name;
   }
 
   upload(event) {
+    this.onAnalyzed = true;
     const file = this.selectedFiles.item(0);
     this.currentFileUpload = new Upload(file);
 
@@ -34,17 +38,12 @@ export class DeclarationComponent implements OnInit {
       console.log('file:', file)
       reader.readAsDataURL(file);
       reader.onload = () => {
- 
         this.vision.getLabels(reader.result.split(',')[1]).subscribe(response => {
 
           console.log(response.json().responses);
           this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress, this.currentUid, response.json().responses);
-
-
-          //this.authService.saveResult(reader.result.split(',')[1], response.json().responses);
         })
       }; 
-    
   }
 
   ngOnInit() {
