@@ -1,0 +1,42 @@
+.fullwidth
+    width: 100%
+    text-align: center
+    margin-bottom: 20px
+
+#filename
+    margin-top: 10px
+    font-size: 12px
+    height: 20px
+
+.progressbar-text
+    margin: 10px auto
+    with: 100%
+    text-align: center
+
+.inputfile
+	width: 0.1px
+	height: 0.1px
+	opacity: 0
+	overflow: hidden
+	position: absolute
+	z-index: -1
+
+.inputfile + label
+    font-size: 14px
+    font-weight: 700
+    color: white
+    background-color: black
+    display: inline-block
+    margin: 0
+    min-width: 88px
+    line-height: 36px
+    padding: 0 16px
+    border-radius: 2px
+
+
+.inputfile:focus + label,
+.inputfile + label:hover
+    background-color: #F44336
+
+.inputfile + label
+	cursor: pointer; 

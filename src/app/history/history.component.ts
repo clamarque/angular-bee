@@ -19,43 +19,16 @@ export class HistoryComponent implements OnInit {
   public items: Observable<any[]>;
   public currentUid: string;
 
-  myData: Array <any>;
-  dataSource: MyDataSource;
-
-  private displayedColumns = ['position', 'name', 'weight'];
-
   constructor(private db: AngularFireDatabase, private authService: AuthService) { 
    
-  }
-
-  public getData() {
-    this.items
-      .subscribe(res => {
-        this.myData = res;
-        this.dataSource = new MyDataSource(this.myData);
-      });
   }
   
   ngOnInit() {
     console.log('init');
     this.currentUid = this.authService.getCurrentUid();
-    this.items = this.db.list('items/' + this.currentUid).valueChanges();;
-    //this.items = this.authService.getResult().valueChanges();
+    this.items = this.db.list('items/' + this.currentUid).valueChanges();
+
     console.log(this.items);
-    this.getData();
   }
 
 }
-
-export class MyDataSource extends DataSource<any> {
-  constructor(private data: Data[]) {
-    super();
-  }
-   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Data[]> {
-    return Observable.of(this.data);
-  }
-
-  disconnect() {}
-
-  }

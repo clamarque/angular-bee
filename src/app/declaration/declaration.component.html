@@ -1,22 +1,18 @@
-<p>
-  declaration works!
-</p>
-
 <!-- VOIR POUR AVOIR LE CHOIX ENTRE UPLOAD FICHIER OU TULISER CAMERA DU DEVICE 
 https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/example.component.ts
 -->
+<div class="fullwidth">
+	<input type="file" name="file" id="file" class="inputfile" (change)="selectFile($event)"/>
+	<label for="file">Choose a file</label>
+	<div id="filename">{{fileChosen}}</div>
+</div> 
 
-<div *ngIf="currentFileUpload" class="progress" style="width:400px">
-	<div class="progress-bar progress-bar-info progress-bar-striped"
-		role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
-		aria-valuemin="0" aria-valuemax="100"
-		[ngStyle]="{width:progress.percentage+'%'}">
-		{{progress.percentage}}%</div>
+<div class="fullwidth">
+	<button mat-raised-button color="warn" class="btn btn-success" [disabled]="!selectedFiles"
+		(click)="upload()">Upload</button>
 </div>
- 
-<label class="btn btn-default"> <input type="file"
-	(change)="selectFile($event)">
-</label>
- 
-<button class="btn btn-success" [disabled]="!selectedFiles"
-	(click)="upload()">Upload</button>
+
+<div [hidden]="!onAnalyzed">
+	<mat-progress-bar mode="determinate" value="{{progress.percentage}}"></mat-progress-bar>
+	<div class="progressbar-text">{{progress.percentage}}%</div>
+</div>
