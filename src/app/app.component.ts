@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,11 +24,14 @@ export class AppComponent {
 
   ngOnInit() {
    this.authService.isLoggin().subscribe(authStatus => {
-      if (authStatus == true) {
+      if (authStatus === true) {
+        console.log('authStatus true', authStatus)
         this.router.navigate(['/home']);
         return this.isConnected = true;
       }
       else {
+        console.log('authStatus false', authStatus)
+        
         return this.isConnected = false;
       }
     });

@@ -14,8 +14,7 @@ export class AuthService {
 
     constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
         this.afAuth.authState.subscribe(auth => {
-            console.log(auth.uid)
-            if (auth) this.uid = auth.uid
+            if (auth != null) this.uid = auth.uid
         })
 
     }

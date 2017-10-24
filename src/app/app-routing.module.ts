@@ -7,15 +7,17 @@ import { SignUpComponent } from './signup/signup.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DeclarationComponent } from './declaration/declaration.component';
 import { HistoryComponent } from './history/history.component';
+import { NestComponent } from './nest/nest.component';
 import { AuthGuard } from './shared/index';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'declaration', component:DeclarationComponent, canActivate: [AuthGuard] },
   { path: 'history', component: HistoryComponent, canActivate: [AuthGuard] },
+  { path: 'nest', component: NestComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },  
   { path: 'signin', component: SignInComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent}
 ];

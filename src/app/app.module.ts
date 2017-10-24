@@ -25,6 +25,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
 import { DeclarationComponent } from './declaration/declaration.component';
 import { HistoryComponent } from './history/history.component';
+import { NestComponent } from './nest/nest.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HistoryComponent } from './history/history.component';
     ProfileComponent,
     ContactComponent,
     DeclarationComponent,
-    HistoryComponent
+    HistoryComponent,
+    NestComponent
   ],
   imports: [
     BrowserModule,

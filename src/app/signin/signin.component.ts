@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
 import { SharedModule } from '../shared/shared.module';
-import { Router } from '@angular/router';  
+import { Router } from '@angular/router';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
 @Component({
   selector: 'app-signin',
@@ -10,18 +11,17 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private auth: AuthService, private router: Router, private snackBar: MatSnackBar) {
 
-   }
+  }
 
   submit(formData) {
-    console.log(formData);
-    this.auth.connectToDb(formData.email, formData.password, (error)=> {
+    this.auth.connectToDb(formData.email, formData.password, (error) => {
       if (error) {
-        console.log(error);
+        this.snackBar.open(error, 'hide', { duration: 5000 })
       }
       else {
-        console.log("ok");
+        this.snackBar.open('Welcome', '', { duration: 5000 })
       }
     });
   }

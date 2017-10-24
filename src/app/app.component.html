@@ -1,18 +1,19 @@
 <mat-toolbar color='primary'>
-  <a routerLink="/"><button mat-button>Angular Bee</button></a>
-  <a routerLink="/declaration" [hidden]="!isConnected"><button mat-button>Declaration</button></a>
-  <a routerLink="/history" [hidden]="!isConnected"><button mat-button>History</button></a>
-  <span class="example-spacer"></span>
-  <a routerLink="/signin" [hidden]="isConnected"><button mat-button>Sign in</button></a>
+  <a class="mat-button" routerLink="/">Angular Bee</a>
+  <a class="mat-button" routerLink="/declaration" [hidden]="!isConnected"> Declaration</a>
+  <a class="mat-button" routerLink="/history" [hidden]="!isConnected"> History</a>
+  <a class="mat-button" routerLink="/nest" [hidden]="!isConnected"> Nest</a>
+  <div class="flex-spacer"></div>
+  <a class="mat-button" routerLink="/signin" [hidden]="isConnected"> Sign in</a>
   <button mat-button [matMenuTriggerFor]="menu" [ngStyle]="{display : !isConnected ? 'none' : ''}">Profile</button>
-  <a routerLink="/declaration" [hidden]="!isConnected">declaration</a>
   <mat-menu #menu="matMenu">
-    <a routerLink="/profile"><button mat-menu-item><mat-icon>settings</mat-icon>Parameter</button></a>
-    <a (click)="logout()"><button mat-menu-item><mat-icon>power_settings_new</mat-icon>Log out</button></a>
+    <a class="mat-menu-item" routerLink="/profile">
+      <mat-icon>settings</mat-icon>Parameter</a>
+    <a class="mat-menu-item" (click)="logout()">
+      <mat-icon>power_settings_new</mat-icon>Log out</a>
   </mat-menu>
 </mat-toolbar>
 
 <div id="app">
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>
-

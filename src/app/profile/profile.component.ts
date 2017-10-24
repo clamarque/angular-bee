@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit {
   
   ngOnInit() {
     let user = this.authService.getCurrentEmail();
+    console.log(user)
 
     if (user != null)
       this.email = user.email;
