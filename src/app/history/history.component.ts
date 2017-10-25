@@ -23,6 +23,22 @@ export class HistoryComponent implements OnInit {
    
   }
   
+  getIcon(percent: number) {
+    if (percent >= 0.75)
+      return "check";
+    else
+      return "clear";
+  }
+
+  getColor(percent: number) {
+    if (percent >= 1)
+      return "#4CAF50";
+    else if (percent >= 0.75)
+      return "#FF9800";
+    else
+      return "#FF5722";
+  }
+
   ngOnInit() {
     console.log('init');
     this.currentUid = this.authService.getCurrentUid();

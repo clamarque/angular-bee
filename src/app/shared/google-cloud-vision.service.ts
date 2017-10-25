@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
 
 
 @Injectable()
-export class GoogleCloudVisionServiceService {
+export class GoogleCloudVisionService {
 
   constructor(public http: Http) { }
 

@@ -1,11 +1,11 @@
 <!-- VOIR POUR AVOIR LE CHOIX ENTRE UPLOAD FICHIER OU TULISER CAMERA DU DEVICE 
 https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/example.component.ts
 -->
-<div class="fullwidth">
+<form #form class="fullwidth">
 	<input type="file" name="file" id="file" class="inputfile" (change)="selectFile($event)"/>
 	<label for="file">Choose a file</label>
 	<div id="filename">{{fileChosen}}</div>
-</div> 
+</form> 
 
 <div class="fullwidth">
 	<button mat-raised-button color="warn" class="btn btn-success" [disabled]="!selectedFiles"
@@ -25,9 +25,17 @@ https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/exam
 		</mat-card-header>
 		<img mat-card-image src="{{fileAnalyzedUrl}}" alt="Analyzed picture">
 		<mat-card-content>
-			<p>
-			{{fileAnalyzedpercent}}
-			</p>
+			<div class="fullwidth">
+				<mat-icon [ngStyle]="{backgroundColor: getColor()}" class="result-icon">{{getIcon()}}</mat-icon>			
+			</div>
+
+			<div *ngFor="let item of items">
+				<div class="analyzeItem">
+					<div class="analyzeLabel">{{item.description}}</div>
+					<mat-progress-bar class="analyzeProgressbar" mode="determinate" [value]="convertScore(item.score)"></mat-progress-bar>
+				</div>
+			</div>					
+			
 		</mat-card-content>
 	</mat-card>		
 </div>
