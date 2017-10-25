@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GoogleCloudVisionService } from '../shared/google-cloud-vision.service';
 import { AuthService } from '../shared/index';
 import { UploadService } from '../shared/upload.service';
@@ -24,6 +24,7 @@ export class DeclarationComponent implements OnInit {
   public fileAnalyzedUrl: string;
   public fileAnalyzedDate: string;
   public items: any[];
+  @ViewChild('form') form;
 
   constructor(private authService: AuthService, 
               private vision: GoogleCloudVisionService,
@@ -40,19 +41,21 @@ export class DeclarationComponent implements OnInit {
     this.currentFileUpload = new Upload(file);
 
     let reader = new FileReader();
-      console.log('file:', file)
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.vision.getLabels(reader.result.split(',')[1]).subscribe(response => {
 
-          console.log(response.json().responses);
-          this.fileAnalyzedpercent = this.analyzePicture(response.json().responses);
-          this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress, this.currentUid, response.json().responses, this.fileAnalyzedpercent);
           this.fileAnalyzedName = file.name;
+          this.fileAnalyzedpercent = this.analyzePicture(response.json().responses);
+          this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress, this.currentUid, response.json().responses, this.fileAnalyzedpercent);          
           console.log("URL : " + this.fileAnalyzedUrl);
           this.isAnalyzed = true;
+          // RESET INPUT FILE
+          this.form.nativeElement.reset();
+          this.selectedFiles = null;
+          this.fileChosen = "";
         });
-      }; 
+      };
   }
 
   analyzePicture(results) {

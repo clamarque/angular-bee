@@ -1,11 +1,11 @@
 <!-- VOIR POUR AVOIR LE CHOIX ENTRE UPLOAD FICHIER OU TULISER CAMERA DU DEVICE 
 https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/example.component.ts
 -->
-<div class="fullwidth">
+<form #form class="fullwidth">
 	<input type="file" name="file" id="file" class="inputfile" (change)="selectFile($event)"/>
 	<label for="file">Choose a file</label>
 	<div id="filename">{{fileChosen}}</div>
-</div> 
+</form> 
 
 <div class="fullwidth">
 	<button mat-raised-button color="warn" class="btn btn-success" [disabled]="!selectedFiles"
