@@ -42,6 +42,9 @@ export class HistoryComponent implements OnInit {
   ngOnInit() {
     console.log('init');
     this.currentUid = this.authService.getCurrentUid();
+
+    // Pense a gerer les erreurs
+    // J ai supprime moi meme une img dans la base et ca me retourne une erreur 403
     this.items = this.db.list('items/' + this.currentUid).valueChanges();
     console.log(this.items);
   }
