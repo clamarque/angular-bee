@@ -15,7 +15,7 @@ import { routing } from './app-routing.module';
 // SERVICE
 import { environment } from '../environments/environment';
 import { AuthService } from './shared/auth.service';
-import { GoogleCloudVisionServiceService } from './shared/google-cloud-vision-service.service';
+import { GoogleCloudVisionService } from './shared/google-cloud-vision.service';
 import { AuthGuard } from './shared/auth.guard';
 import { UploadService } from './shared/upload.service';
 
@@ -56,7 +56,7 @@ import { HistoryComponent } from './history/history.component';
   providers: [AuthGuard, 
               AuthService, 
               AngularFireDatabase, 
-              GoogleCloudVisionServiceService,
+              GoogleCloudVisionService,
               UploadService
             ],
   bootstrap: [AppComponent]
