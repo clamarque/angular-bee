@@ -101,7 +101,7 @@ export class DeclarationComponent implements OnInit {
     if (score >= 1)
       return 100
     else
-      return score * 100
+      return Math.round(score * 100)
   }
 
   ngOnInit() {
