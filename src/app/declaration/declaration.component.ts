@@ -39,7 +39,14 @@ export class DeclarationComponent implements OnInit {
     this.onAnalyzed = true;
     const file = this.selectedFiles.item(0);
     console.log('file', file)
-    this.currentFileUpload = new Upload(file);
+    
+    if(file.toString().match(/\.(jpe?g|png|gif)$/)) {
+      this.currentFileUpload = new Upload(file);
+    }
+    else {
+      console.log('error import img')
+    }
+    
 
     let reader = new FileReader();
       reader.readAsDataURL(file);
