@@ -2,7 +2,7 @@
 https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/example.component.ts
 -->
 <form #form class="fullwidth">
-	<input type="file" name="file" id="file" class="inputfile" (change)="selectFile($event)"/>
+	<input type="file" name="file" id="file" class="inputfile" (change)="selectFile($event)"  accept="image/*"/>
 	<label for="file">Choose a file</label>
 	<div id="filename">{{fileChosen}}</div>
 </form> 
@@ -31,8 +31,8 @@ https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/exam
 
 			<div *ngFor="let item of items">
 				<div class="analyzeItem">
-					<div class="analyzeLabel">{{item.description}}</div>
-					<mat-progress-bar class="analyzeProgressbar" mode="determinate" [value]="convertScore(item.score)"></mat-progress-bar>
+					<div class="analyzeLabel">{{item.description}} : {{convertScore(item.score)}} % </div>
+					<mat-progress-bar class="analyzeProgressbar" mode="determinate" [value]="convertScore(item.score)"></mat-progress-bar>					
 				</div>
 			</div>					
 			

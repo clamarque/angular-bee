@@ -38,6 +38,7 @@ export class DeclarationComponent implements OnInit {
   upload(event) {
     this.onAnalyzed = true;
     const file = this.selectedFiles.item(0);
+    console.log('file', file)
     this.currentFileUpload = new Upload(file);
 
     let reader = new FileReader();
@@ -58,6 +59,9 @@ export class DeclarationComponent implements OnInit {
       };
   }
 
+  // A quoi sert cette fonction ? Je comprends bien que cela analyse le score de correspondance d une guepe
+  // Mais pq tu n utilises pas deja la variable item.score ?
+  
   analyzePicture(results) {
     var maxScore = 0;
     this.items = [];
@@ -97,7 +101,7 @@ export class DeclarationComponent implements OnInit {
     if (score >= 1)
       return 100
     else
-      return score * 100
+      return Math.round(score * 100)
   }
 
   ngOnInit() {
