@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GoogleCloudVisionService } from '../shared/google-cloud-vision.service';
-import { AuthService } from '../shared/index';
+import { AuthService, SharedModule } from '../shared/index';
 import { UploadService } from '../shared/upload.service';
 import { Upload } from '../shared/upload';
 
@@ -40,14 +40,15 @@ export class DeclarationComponent implements OnInit {
     const file = this.selectedFiles.item(0);
     console.log('file', file)
     
-    if(file.toString().match(/\.(jpe?g|png|gif)$/)) {
+    /*if(file.toString().match(/\.(jpg|png|gif)$/)) {
       this.currentFileUpload = new Upload(file);
     }
     else {
       console.log('error import img')
-    }
-    
+    } */
 
+    this.currentFileUpload = new Upload(file);
+    
     let reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
@@ -58,8 +59,10 @@ export class DeclarationComponent implements OnInit {
           this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress, this.currentUid, response.json().responses, this.fileAnalyzedpercent);          
           console.log("URL : " + this.fileAnalyzedUrl);
           this.isAnalyzed = true;
+
           // RESET INPUT FILE
           this.form.nativeElement.reset();
+          this.onAnalyzed = false;          
           this.selectedFiles = null;
           this.fileChosen = "";
         });
@@ -113,6 +116,10 @@ export class DeclarationComponent implements OnInit {
 
   ngOnInit() {
     this.currentUid = this.authService.getCurrentUid();
+  }
+
+  submit(data) {
+    console.log('data', data)
   }
 
 }

@@ -1,41 +1,86 @@
 <!-- VOIR POUR AVOIR LE CHOIX ENTRE UPLOAD FICHIER OU TULISER CAMERA DU DEVICE 
 https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/example.component.ts
 -->
-<form #form class="fullwidth">
-	<input type="file" name="file" id="file" class="inputfile" (change)="selectFile($event)"  accept="image/*"/>
+
+<div id="drop">
+    <div>
+      <mat-icon>insert_photo</mat-icon>
+      <h2>Drop your files here</h2>
+      <p>Or click</p>
+      <input type="file" name="file" id="file" class="inputfile" (change)="selectFile($event)"  accept="image/*"/>
+      <label for="file">Choose a file</label>
+    </div>
+    <button mat-raised-button color="warn" class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+  </div>
+
+
+
+
+<!--
+
+<form (ngSubmit)='submit(formData.value)' #formData='ngForm' class="fullwidth">
+  <div class="form-container">
+  
+
+    <!-- generere un ID de la fiche -->
+    <!-- mail , nom utilisateur, ID deja present -->
+
+    <!-- choix photo par upload (cote web) ou par camera -->
+    <!--<input type="file" name="file" id="file" class="inputfile" (change)="selectFile($event)"  accept="image/*"/>
 	<label for="file">Choose a file</label>
 	<div id="filename">{{fileChosen}}</div>
-</form> 
+	-->
+    <!-- resultat analyse --
 
-<div class="fullwidth">
-	<button mat-raised-button color="warn" class="btn btn-success" [disabled]="!selectedFiles"
-		(click)="upload()">Upload</button>
-</div>
+    !-- Avez vu des frelons ? --
+    <mat-checkbox ngModel name="wasps">Have you seen hornets around the nest ?</mat-checkbox>
+    !-- comment --
+    <mat-form-field>
+      <textarea matInput ngModel name="comments" placeholder="Comments"></textarea>
+    </mat-form-field>
+  -->
+    <!-- coordonnee du nid - recherches par adresse ou par geolocalisation -->
+
+    <!-- N° telephone pour avoir plus d info si necessaire - optionel comme champs--
+    <mat-form-field>
+      <input matInput ngModel name="phone" placeholder="Phone" type="number" class="example-right-align">
+      <span matPrefix>
+        <mat-icon>phone</mat-icon>
+      </span>
+    </mat-form-field>
+  </div>
+
+  <button class="mat-raised-button" type="submit">submit</button>
+</form>
+
+<!-- confirmation -->
+
+
 
 <div [hidden]="!onAnalyzed">
-	<mat-progress-bar mode="determinate" value="{{progress.percentage}}"></mat-progress-bar>
-	<div class="progressbar-text">{{progress.percentage}}%</div>
+  <mat-progress-bar mode="determinate" value="{{progress.percentage}}"></mat-progress-bar>
+  <div class="progressbar-text">{{progress.percentage}}%</div>
 </div>
 
 <div [hidden]="!isAnalyzed">
-	<mat-card class="card-bee">
-		<mat-card-header>
-			<mat-card-title>{{fileAnalyzedName}}</mat-card-title>
-			<mat-card-subtitle>{{fileAnalyzedDate}}</mat-card-subtitle>
-		</mat-card-header>
-		<img mat-card-image src="{{fileAnalyzedUrl}}" alt="Analyzed picture">
-		<mat-card-content>
-			<div class="fullwidth">
-				<mat-icon [ngStyle]="{backgroundColor: getColor()}" class="result-icon">{{getIcon()}}</mat-icon>			
-			</div>
+  <mat-card class="card-bee">
+    <mat-card-header>
+      <mat-card-title>{{fileAnalyzedName}}</mat-card-title>
+      <mat-card-subtitle>{{fileAnalyzedDate}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{fileAnalyzedUrl}}" alt="Analyzed picture">
+    <mat-card-content>
+      <div class="fullwidth">
+        <mat-icon [ngStyle]="{backgroundColor: getColor()}" class="result-icon">{{getIcon()}}</mat-icon>
+      </div>
 
-			<div *ngFor="let item of items">
-				<div class="analyzeItem">
-					<div class="analyzeLabel">{{item.description}} : {{convertScore(item.score)}} % </div>
-					<mat-progress-bar class="analyzeProgressbar" mode="determinate" [value]="convertScore(item.score)"></mat-progress-bar>					
-				</div>
-			</div>					
-			
-		</mat-card-content>
-	</mat-card>		
+      <div *ngFor="let item of items">
+        <div class="analyzeItem">
+          <div class="analyzeLabel">{{item.description}} : {{convertScore(item.score)}} % </div>
+          <mat-progress-bar class="analyzeProgressbar" mode="determinate" [value]="convertScore(item.score)"></mat-progress-bar>
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
 </div>
