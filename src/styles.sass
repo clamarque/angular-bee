@@ -3,7 +3,7 @@
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
 
-body
+body, html
     margin: 0;
     padding: 0;
     width: 100%;
@@ -25,9 +25,16 @@ a
 .example-spacer
     flex: 1 1 auto;
 
+
+.mat 
+    &-form-field
+        width: 400px;
+
 .form-container
     display: flex;
     flex-direction: column;
+    justify-content: center
+    align-items: center;
 
 .flex
     list-style: none;  
@@ -42,4 +49,27 @@ a
 .flex-spacer
     flex-grow: 1
 
+
+.example-right-align 
+    text-align: right;
+
+
+
+app-declaration 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+[id="drop"]
+    display: inherit;
+    flex-direction: inherit;
+    justify-content: inherit;
+    align-items: inherit;
+    text-align: center;
+    width: 400px;
+    height: 200px;
+    margin: 10px 0 20px;
+    padding: 10px;
+    border: 4px dotted #d3d3d3;
 
