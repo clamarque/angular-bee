@@ -1,6 +1,7 @@
 // MODULE
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -49,6 +50,7 @@ import { NestComponent } from './nest/nest.component';
     BrowserAnimationsModule,
     NoopAnimationsModule,
     SharedModule,
+    ReactiveFormsModule,
     HttpModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

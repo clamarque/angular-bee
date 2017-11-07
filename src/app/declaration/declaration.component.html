@@ -2,16 +2,90 @@
 https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/example.component.ts
 -->
 
-<div id="drop">
+<mat-vertical-stepper [linear]="isLinear">
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Information on the nest</ng-template>
+      <div id="drop">
+        <div>
+          <mat-icon>insert_photo</mat-icon>
+          <h2>Drop your files here</h2>
+          <p>Or click</p>
+          <input type="file" name="file" id="file" class="inputfile" (change)="selectFile($event)" accept="image/*" />
+          <label for="file">Choose a file</label>
+        </div>
+        <button mat-raised-button color="warn" class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+      </div>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Your name</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Name" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Your email</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="email" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Your phone</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Name" formControlName="firstCtrl">
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill out your comments</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
     <div>
-      <mat-icon>insert_photo</mat-icon>
-      <h2>Drop your files here</h2>
-      <p>Or click</p>
-      <input type="file" name="file" id="file" class="inputfile" (change)="selectFile($event)"  accept="image/*"/>
-      <label for="file">Choose a file</label>
+      <button mat-button matStepperPrevious>Back</button>
     </div>
-    <button mat-raised-button color="warn" class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-  </div>
+  </mat-step>
+</mat-vertical-stepper>
+
+
 
 
 
@@ -23,14 +97,14 @@ https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/exam
   
 
     <!-- generere un ID de la fiche -->
-    <!-- mail , nom utilisateur, ID deja present -->
+<!-- mail , nom utilisateur, ID deja present -->
 
-    <!-- choix photo par upload (cote web) ou par camera -->
-    <!--<input type="file" name="file" id="file" class="inputfile" (change)="selectFile($event)"  accept="image/*"/>
+<!-- choix photo par upload (cote web) ou par camera -->
+<!--<input type="file" name="file" id="file" class="inputfile" (change)="selectFile($event)"  accept="image/*"/>
 	<label for="file">Choose a file</label>
 	<div id="filename">{{fileChosen}}</div>
 	-->
-    <!-- resultat analyse --
+<!-- resultat analyse --
 
     !-- Avez vu des frelons ? --
     <mat-checkbox ngModel name="wasps">Have you seen hornets around the nest ?</mat-checkbox>
@@ -39,9 +113,9 @@ https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/exam
       <textarea matInput ngModel name="comments" placeholder="Comments"></textarea>
     </mat-form-field>
   -->
-    <!-- coordonnee du nid - recherches par adresse ou par geolocalisation -->
+<!-- coordonnee du nid - recherches par adresse ou par geolocalisation -->
 
-    <!-- N° telephone pour avoir plus d info si necessaire - optionel comme champs--
+<!-- N° telephone pour avoir plus d info si necessaire - optionel comme champs--
     <mat-form-field>
       <input matInput ngModel name="phone" placeholder="Phone" type="number" class="example-right-align">
       <span matPrefix>

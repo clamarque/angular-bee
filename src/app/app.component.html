@@ -1,3 +1,45 @@
+<nav class="docs-navbar-header">
+  <a aria-label="Angular Bee" class="mat-button" mat-button="" routerLink="/">
+    <span class="mat-button-wrapper">
+      <img alt="angular" class="docs-angular-logo" src="../../assets/img/homepage/angular-white-transparent.svg">
+      <span>Bee</span>
+    </span>
+    <div class="mat-button-ripple mat-ripple" matripple=""></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a>
+  <!---->
+  <a class="mat-button" mat-button="" routerLink="/declaration">
+    <span class="mat-button-wrapper">Declaration</span>
+    <div class="mat-button-ripple mat-ripple" matripple=""></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a>
+  <a class="mat-button" mat-button="" routerLink="/history" [hidden]="!isConnected">
+    <span class="mat-button-wrapper">History</span>
+    <div class="mat-button-ripple mat-ripple" matripple=""></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a>
+  <a class="mat-button" mat-button="" routerLink="/nest" [hidden]="!isConnected">
+    <span class="mat-button-wrapper">Nest</span>
+    <div class="mat-button-ripple mat-ripple" matripple=""></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a>
+  <div class="flex-spacer"></div>
+  
+  <a aria-label="Sign in" class="mat-button" mat-button="" routerLink="/signin" [hidden]="!isConnected">
+    <span class="mat-button-wrapper">Sign in</span>
+    <div class="mat-button-ripple mat-ripple" matripple=""></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a>
+  <button mat-button [matMenuTriggerFor]="menu" [ngStyle]="{display : !isConnected ? 'none' : ''}">Profile</button>
+  <mat-menu #menu="matMenu">
+    <a class="mat-menu-item" routerLink="/profile">
+      <mat-icon>settings</mat-icon>Parameter</a>
+    <a class="mat-menu-item" (click)="logout()">
+      <mat-icon>power_settings_new</mat-icon>Log out</a>
+  </mat-menu>
+ 
+</nav>
+<!--
 <mat-toolbar color='primary'>
   <a class="mat-button" routerLink="/">Angular Bee</a>
   <a class="mat-button" routerLink="/declaration" [hidden]="!isConnected"> Declaration</a>
@@ -14,6 +56,7 @@
   </mat-menu>
 </mat-toolbar>
 
-<div id="app">
-  <router-outlet></router-outlet>
-</div>
+-->
+
+<router-outlet></router-outlet>
+

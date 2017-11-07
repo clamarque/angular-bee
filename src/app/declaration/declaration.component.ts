@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GoogleCloudVisionService } from '../shared/google-cloud-vision.service';
 import { AuthService, SharedModule } from '../shared/index';
 import { UploadService } from '../shared/upload.service';
@@ -24,11 +25,18 @@ export class DeclarationComponent implements OnInit {
   public fileAnalyzedUrl: string;
   public fileAnalyzedDate: string;
   public items: any[];
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
+
+
   @ViewChild('form') form;
 
   constructor(private authService: AuthService, 
               private vision: GoogleCloudVisionService,
-              private uploadService: UploadService) { }
+              private uploadService: UploadService,
+              private _formBuilder: FormBuilder) { }
 
   selectFile(event) {
     this.selectedFiles = event.target.files;
@@ -116,6 +124,13 @@ export class DeclarationComponent implements OnInit {
 
   ngOnInit() {
     this.currentUid = this.authService.getCurrentUid();
+
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
   }
 
   submit(data) {

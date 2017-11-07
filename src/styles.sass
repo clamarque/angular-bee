@@ -10,12 +10,31 @@ body, html
     height: 100%;
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
+    color: #795726;
+
 
 a 
     cursor: pointer;
     text-decoration: none;
     color: #000;
     outline: none;
+
+
+
+h1
+    font-weight: 500;
+
+app-root
+    display: flex;
+    flex-direction: column;
+
+nav 
+    a 
+        font-size: 1.1rem;
+
+app-declaration
+    display: flex;
+    flex-direction: column;
 
 
 #app 
@@ -55,11 +74,7 @@ a
 
 
 
-app-declaration 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
 
 [id="drop"]
     display: inherit;
@@ -72,4 +87,58 @@ app-declaration
     margin: 10px 0 20px;
     padding: 10px;
     border: 4px dotted #d3d3d3;
+
+
+.docs-navbar-header 
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px 16px;
+    background: #ffc107;
+
+
+.docs-angular-logo
+    height: 26px;
+    margin: 0 4px 3px 0;
+    vertical-align: middle;
+
+
+mat-grid-tile
+    background: yellow;
+
+
+.grid-tile
+    display: block;
+    flex: 2;
+
+
+
+.grid-content
+    display: inherit;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+
+    p 
+        color: #795726;
+
+
+.grid-img 
+    width: 450px;
+
+
+
+.container
+    display: block;
+    padding: 20px;
+
+@media only screen and (min-width: 640px)
+    .container
+        display: flex;
+    .grid-tile
+        display: flex;
+        flex-direction: column;
+
 
