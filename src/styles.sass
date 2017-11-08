@@ -4,6 +4,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
 
 body, html
+    position: relative;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -27,10 +28,21 @@ h1
 app-root
     display: flex;
     flex-direction: column;
+    height: inherit;
 
-nav 
+app
+    &-home, &-history, &-nest, &-profile, &-signin
+        height: inherit
+
+nav
+    min-height: 40px; 
     a 
         font-size: 1.1rem;
+
+[hidden] 
+    display: none !important;
+
+
 
 app-declaration
     display: flex;
@@ -43,6 +55,24 @@ app-declaration
 
 .example-spacer
     flex: 1 1 auto;
+
+
+.app-footer
+    margin-top: 40px;
+    padding: 12px;
+    font-size: 12px;
+    background: #795726;
+    color: #FFF;
+
+    &-list
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: row wrap;
+        padding: 8px;
+        text-align: center;
+
+
 
 
 .mat 
@@ -123,16 +153,21 @@ mat-grid-tile
 
     p 
         color: #795726;
+        letter-spacing: .1rem;
 
 
 .grid-img 
     width: 450px;
 
 
-
 .container
     display: block;
     padding: 20px;
+
+
+.app-home-logo
+    background: #ffc107;
+    vertical-align: middle;
 
 @media only screen and (min-width: 640px)
     .container

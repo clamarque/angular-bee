@@ -8,7 +8,7 @@
     <div class="mat-button-focus-overlay"></div>
   </a>
   <!---->
-  <a class="mat-button" mat-button="" routerLink="/declaration">
+  <a class="mat-button" mat-button="" routerLink="/declaration" [hidden]="!isConnected">
     <span class="mat-button-wrapper">Declaration</span>
     <div class="mat-button-ripple mat-ripple" matripple=""></div>
     <div class="mat-button-focus-overlay"></div>
@@ -24,8 +24,8 @@
     <div class="mat-button-focus-overlay"></div>
   </a>
   <div class="flex-spacer"></div>
-  
-  <a aria-label="Sign in" class="mat-button" mat-button="" routerLink="/signin" [hidden]="!isConnected">
+
+  <a aria-label="Sign in" class="mat-button" mat-button="" routerLink="/signin" [hidden]="isConnected">
     <span class="mat-button-wrapper">Sign in</span>
     <div class="mat-button-ripple mat-ripple" matripple=""></div>
     <div class="mat-button-focus-overlay"></div>
@@ -37,7 +37,7 @@
     <a class="mat-menu-item" (click)="logout()">
       <mat-icon>power_settings_new</mat-icon>Log out</a>
   </mat-menu>
- 
+
 </nav>
 <!--
 <mat-toolbar color='primary'>
@@ -60,3 +60,4 @@
 
 <router-outlet></router-outlet>
 
+<app-footer></app-footer>

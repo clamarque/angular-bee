@@ -14,7 +14,7 @@ import {
   MatProgressBarModule, 
   MatCardModule,
   MatStepperModule,
-  MatGridListModule } from '@angular/material';
+   } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -32,7 +32,7 @@ import {
     MatProgressBarModule, 
     MatCardModule,
     MatStepperModule,
-    MatGridListModule],
+    ],
   exports: [
     FormsModule, 
     MatCheckboxModule, 
@@ -48,7 +48,7 @@ import {
     MatProgressBarModule, 
     MatCardModule,
     MatStepperModule,
-    MatGridListModule]
+    ]
 })
 
 export class SharedModule { }

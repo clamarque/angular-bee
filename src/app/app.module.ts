@@ -31,6 +31,7 @@ import { ContactComponent } from './contact/contact.component';
 import { DeclarationComponent } from './declaration/declaration.component';
 import { HistoryComponent } from './history/history.component';
 import { NestComponent } from './nest/nest.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NestComponent } from './nest/nest.component';
     ContactComponent,
     DeclarationComponent,
     HistoryComponent,
-    NestComponent
+    NestComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
