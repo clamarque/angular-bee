@@ -52,9 +52,11 @@ https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/exam
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Your phone</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Name" formControlName="firstCtrl">
-      </mat-form-field>
+      <mat-form-field class="example-full-width">
+          <span matPrefix>+33 &nbsp;</span>
+          <input type="tel" matInput placeholder="Telephone" formControlName="firstCtrl">
+          <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>

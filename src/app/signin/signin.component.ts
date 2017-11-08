@@ -10,6 +10,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
   styleUrls: ['./signin.component.sass']
 })
 export class SignInComponent implements OnInit {
+  hide = true;
 
   constructor(private auth: AuthService, private router: Router, private snackBar: MatSnackBar) {
 
