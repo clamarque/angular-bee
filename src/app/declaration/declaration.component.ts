@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { GoogleCloudVisionService } from '../shared/google-cloud-vision.service';
 import { AuthService, SharedModule } from '../shared/index';
 import { UploadService } from '../shared/upload.service';
@@ -20,15 +20,18 @@ export class DeclarationComponent implements OnInit {
   public onAnalyzed: boolean = false;
   public fileChosen: string = "";
   public isAnalyzed: boolean = false;
+  public isUpload: boolean = false;
   public fileAnalyzedpercent: number;
   public fileAnalyzedName: string;
   public fileAnalyzedUrl: string;
   public fileAnalyzedDate: string;
   public items: any[];
-  isLinear = false;
+  isLinear = true;
+  formGroup: FormGroup;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-
+  thirdFormGroup: FormGroup;
+  fourthFormGroup: FormGroup;
 
 
   @ViewChild('form') form;
@@ -45,6 +48,7 @@ export class DeclarationComponent implements OnInit {
 
   upload(event) {
     this.onAnalyzed = true;
+    this.isUpload = true;
     const file = this.selectedFiles.item(0);
     console.log('file', file)
     
@@ -59,7 +63,7 @@ export class DeclarationComponent implements OnInit {
     
     let reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = () => {
+      /*reader.onload = () => {
         this.vision.getLabels(reader.result.split(',')[1]).subscribe(response => {
 
           this.fileAnalyzedName = file.name;
@@ -74,7 +78,7 @@ export class DeclarationComponent implements OnInit {
           this.selectedFiles = null;
           this.fileChosen = "";
         });
-      };
+      };*/
   }
 
   // A quoi sert cette fonction ? Je comprends bien que cela analyse le score de correspondance d une guepe
@@ -122,19 +126,33 @@ export class DeclarationComponent implements OnInit {
       return Math.round(score * 100)
   }
 
+  get formArray(): AbstractControl | null { return this.formGroup.get('formArray')};
+
   ngOnInit() {
     this.currentUid = this.authService.getCurrentUid();
 
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+    this.formGroup = this._formBuilder.group({
+      formArray : this._formBuilder.array([
+        this._formBuilder.group({
+          name: ['', Validators.required]
+        }),
+        this._formBuilder.group({
+          email: ['', Validators.email]
+        }),
+        this._formBuilder.group({
+          phone: ['']
+        }),
+        this._formBuilder.group({
+          comments: ['']
+        })
+      ])
+    })
+
   }
 
   submit(data) {
-    console.log('data', data)
+    console.log(this.formGroup.value);
   }
+
 
 }

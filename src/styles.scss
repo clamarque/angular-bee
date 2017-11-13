@@ -26,6 +26,11 @@ a {
     outline: none;
 }
 
+.active {
+    color: #FFF !important;
+    background: #795726;
+}
+
 h1 {
     font-weight: 500;
 }
@@ -36,6 +41,7 @@ form {
     justify-content: center;
     align-items: center;
 }
+
 
 .mat {
 
@@ -60,6 +66,12 @@ app {
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+    }
+
+    &-declaration {
+        form {
+            align-items: flex-start;
+        }
     }
 }
 
@@ -92,6 +104,7 @@ nav {
     align-items: center;
     padding: 8px 16px;
     background: #ffc107;
+    z-index: 1;
 }
 .angular-logo {
     height: 26px;
@@ -148,6 +161,26 @@ nav {
      vertical-align: middle;
  }
 
+ /*
+  * DECLARATION 
+  */
+.example-right-align {
+    text-align: right;
+}
+
+[id="drop"] {
+    display: inherit;
+    flex-direction: inherit;
+    justify-content: inherit;
+    align-items: inherit;
+    text-align: center;
+    width: 400px;
+    height: 200px;
+    margin: 10px 0 20px;
+    padding: 10px;
+    border: 4px dotted #d3d3d3;
+}
+
 
 /*
  * FOOTER
@@ -169,25 +202,6 @@ nav {
     }
 }
 
-
-
-/*
-.example-right-align 
-    text-align: right;
-
-[id="drop"]
-    display: inherit;
-    flex-direction: inherit;
-    justify-content: inherit;
-    align-items: inherit;
-    text-align: center;
-    width: 400px;
-    height: 200px;
-    margin: 10px 0 20px;
-    padding: 10px;
-    border: 4px dotted #d3d3d3;
-
-*/
 
 @media only screen and (min-width: 640px) {
     .container {

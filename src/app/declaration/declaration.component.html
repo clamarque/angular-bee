@@ -1,10 +1,65 @@
 <!-- VOIR POUR AVOIR LE CHOIX ENTRE UPLOAD FICHIER OU TULISER CAMERA DU DEVICE 
 https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/example.component.ts
 -->
-
-<mat-vertical-stepper [linear]="isLinear">
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
+<div class="app-content">
+  <form [formGroup]="formGroup">
+    <mat-vertical-stepper formArrayName="formArray" [linear]="isLinear">
+      <mat-step formGroupName="0" [stepControl]="formArray.get([0])">
+        <ng-template matStepLabel>Your name</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Name" formControlName="name" required>
+          <mat-error>This field is required</mat-error>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
+      <mat-step formGroupName="1" [stepControl]="formArray.get([1])">
+        <ng-template matStepLabel>Your email</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Email address" formControlName="email" required>
+          <mat-error>Email is invalid</mat-error>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious type="button">Back</button>
+          <button mat-button matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
+      <mat-step formGroupName="2" [stepControl]="formArray.get([2])" optional>
+          <ng-template matStepLabel>Your phone</ng-template>
+          <mat-form-field class="example-full-width">
+            <span matPrefix>+33 &nbsp;</span>
+            <input type="tel" matInput placeholder="Telephone" formControlName="phone">
+            <mat-icon matSuffix>phone</mat-icon>
+          </mat-form-field>
+          <div>
+              <button mat-button matStepperPrevious type="button">Back</button>
+              <button mat-button matStepperNext type="button">Next</button>
+            </div>
+      </mat-step>
+      <mat-step formGroupName="3" [stepControl]="formArray.get([3])" optional>
+          <ng-template matStepLabel>Fill out your comments</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Address" formControlName="comments">
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+      </mat-step>
+      <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          You are now done.
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="submit()">Send</button>
+          </div>
+        </mat-step>
+    </mat-vertical-stepper>
+  </form>
+  <!-- 
+  <mat-vertical-stepper [linear]="isLinear">
+    <mat-step>
       <ng-template matStepLabel>Information on the nest</ng-template>
       <div id="drop">
         <div>
@@ -18,147 +73,41 @@ https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/exam
       </div>
 
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext [disabled]="!isUpload">Next</button>
       </div>
-    </form>
-  </mat-step>
-
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Your name</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Name" formControlName="firstCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Your email</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="email" formControlName="firstCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Your phone</ng-template>
-      <mat-form-field class="example-full-width">
-          <span matPrefix>+33 &nbsp;</span>
-          <input type="tel" matInput placeholder="Telephone" formControlName="firstCtrl">
-          <mat-icon matSuffix>phone</mat-icon>
-        </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-
-
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your comments</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-    </div>
-  </mat-step>
-</mat-vertical-stepper>
+    </mat-step>
+-->
 
 
 
 
-
-
-<!--
-
-<form (ngSubmit)='submit(formData.value)' #formData='ngForm' class="fullwidth">
-  <div class="form-container">
-  
-
-    <!-- generere un ID de la fiche -->
-<!-- mail , nom utilisateur, ID deja present -->
-
-<!-- choix photo par upload (cote web) ou par camera -->
-<!--<input type="file" name="file" id="file" class="inputfile" (change)="selectFile($event)"  accept="image/*"/>
-	<label for="file">Choose a file</label>
-	<div id="filename">{{fileChosen}}</div>
-	-->
-<!-- resultat analyse --
-
-    !-- Avez vu des frelons ? --
-    <mat-checkbox ngModel name="wasps">Have you seen hornets around the nest ?</mat-checkbox>
-    !-- comment --
-    <mat-form-field>
-      <textarea matInput ngModel name="comments" placeholder="Comments"></textarea>
-    </mat-form-field>
-  -->
-<!-- coordonnee du nid - recherches par adresse ou par geolocalisation -->
-
-<!-- N° telephone pour avoir plus d info si necessaire - optionel comme champs--
-    <mat-form-field>
-      <input matInput ngModel name="phone" placeholder="Phone" type="number" class="example-right-align">
-      <span matPrefix>
-        <mat-icon>phone</mat-icon>
-      </span>
-    </mat-form-field>
+  <div [hidden]="!onAnalyzed">
+    <mat-progress-bar mode="determinate" value="{{progress.percentage}}"></mat-progress-bar>
+    <div class="progressbar-text">{{progress.percentage}}%</div>
   </div>
 
-  <button class="mat-raised-button" type="submit">submit</button>
-</form>
-
-<!-- confirmation -->
-
-
-
-<div [hidden]="!onAnalyzed">
-  <mat-progress-bar mode="determinate" value="{{progress.percentage}}"></mat-progress-bar>
-  <div class="progressbar-text">{{progress.percentage}}%</div>
-</div>
-
-<div [hidden]="!isAnalyzed">
-  <mat-card class="card-bee">
-    <mat-card-header>
-      <mat-card-title>{{fileAnalyzedName}}</mat-card-title>
-      <mat-card-subtitle>{{fileAnalyzedDate}}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="{{fileAnalyzedUrl}}" alt="Analyzed picture">
-    <mat-card-content>
-      <div class="fullwidth">
-        <mat-icon [ngStyle]="{backgroundColor: getColor()}" class="result-icon">{{getIcon()}}</mat-icon>
-      </div>
-
-      <div *ngFor="let item of items">
-        <div class="analyzeItem">
-          <div class="analyzeLabel">{{item.description}} : {{convertScore(item.score)}} % </div>
-          <mat-progress-bar class="analyzeProgressbar" mode="determinate" [value]="convertScore(item.score)"></mat-progress-bar>
+  <div [hidden]="!isAnalyzed">
+    <mat-card class="card-bee">
+      <mat-card-header>
+        <mat-card-title>{{fileAnalyzedName}}</mat-card-title>
+        <mat-card-subtitle>{{fileAnalyzedDate}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{fileAnalyzedUrl}}" alt="Analyzed picture">
+      <mat-card-content>
+        <div class="fullwidth">
+          <mat-icon [ngStyle]="{backgroundColor: getColor()}" class="result-icon">{{getIcon()}}</mat-icon>
         </div>
-      </div>
 
-    </mat-card-content>
-  </mat-card>
+        <div *ngFor="let item of items">
+          <div class="analyzeItem">
+            <div class="analyzeLabel">{{item.description}} : {{convertScore(item.score)}} % </div>
+            <mat-progress-bar class="analyzeProgressbar" mode="determinate" [value]="convertScore(item.score)"></mat-progress-bar>
+          </div>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+
+  </div>
 </div>
-
-
+<app-footer></app-footer>
