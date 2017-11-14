@@ -154,6 +154,7 @@ nav {
 .container {
     display: block;
     padding: 20px;
+    min-height: 250px;
 }
 
  .app-home-logo {
@@ -186,7 +187,6 @@ nav {
  * FOOTER
  */ 
 .app-footer {
-    margin-top: 40px;
     padding: 12px;
     font-size: 12px;
     background: #795726;
