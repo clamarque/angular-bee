@@ -1,9 +1,25 @@
 <!-- VOIR POUR AVOIR LE CHOIX ENTRE UPLOAD FICHIER OU TULISER CAMERA DU DEVICE 
 https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/example.component.ts
 -->
+<app-google-map (latitude)="getLatitude($event)" (longitude)="getLongitude($event)"></app-google-map>
+dataLocal: {{dataLocal}}
 <div class="app-content">
   <form [formGroup]="formGroup">
     <mat-vertical-stepper formArrayName="formArray" [linear]="isLinear">
+        <mat-step formGroupName="0" [stepControl]="formArray.get([0])">
+            <ng-template matStepLabel>Localisation</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="Latitude" formControlName="latitude" (valueChange)="updateComment($event)">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Latitude" formControlName="longitude" (valueChange)="updateComment($event)">
+            </mat-form-field>
+
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-step>
       <mat-step formGroupName="0" [stepControl]="formArray.get([0])">
         <ng-template matStepLabel>Your name</ng-template>
         <mat-form-field>
@@ -57,6 +73,8 @@ https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/exam
         </mat-step>
     </mat-vertical-stepper>
   </form>
+
+
   <!-- 
   <mat-vertical-stepper [linear]="isLinear">
     <mat-step>

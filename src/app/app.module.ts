@@ -10,6 +10,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
+import { AgmCoreModule } from '@agm/core';
 
 import { routing } from './app-routing.module'; 
 
@@ -19,6 +20,8 @@ import { AuthService } from './shared/auth.service';
 import { GoogleCloudVisionService } from './shared/google-cloud-vision.service';
 import { AuthGuard } from './shared/auth.guard';
 import { UploadService } from './shared/upload.service';
+import { GeoService } from './shared/geo.service';
+import { SpinnerService } from './shared/spinner.service';
 
 // COMPONENT
 import { AppComponent } from './app.component';
@@ -32,6 +35,8 @@ import { DeclarationComponent } from './declaration/declaration.component';
 import { HistoryComponent } from './history/history.component';
 import { NestComponent } from './nest/nest.component';
 import { FooterComponent } from './footer/footer.component';
+import { GoogleMapComponent } from './google-map/google-map.component';
+import { GoogleVisionComponent } from './google-vision/google-vision.component';
 
 @NgModule({
   declarations: [
@@ -45,9 +50,15 @@ import { FooterComponent } from './footer/footer.component';
     DeclarationComponent,
     HistoryComponent,
     NestComponent,
-    FooterComponent
+    FooterComponent,
+    GoogleMapComponent,
+    GoogleVisionComponent
   ],
   imports: [
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDcObEbkYSeM9kCU2Edq5rQug0nUGvJoAI',
+      libraries: ['places']
+    }),
     BrowserModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
@@ -63,7 +74,9 @@ import { FooterComponent } from './footer/footer.component';
               AuthService, 
               AngularFireDatabase, 
               GoogleCloudVisionService,
-              UploadService
+              UploadService,
+              GeoService,
+              SpinnerService
             ],
   bootstrap: [AppComponent]
 })

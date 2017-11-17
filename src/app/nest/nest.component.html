@@ -1,6 +1,75 @@
 <div class="app-content">
-  <p>
-    nest works!
-  </p>
+  <div class="setp0" [hidden]="isBeginning">
+    <h1>Declare a nest</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam molestie, magna ac placerat dignissim, lacus eros commodo
+      mauris, at maximus quam felis vel sapien. Maecenas viverra, tortor vel tincidunt pellentesque, odio dui faucibus nisi,
+      a placerat nunc orci in ex. Mauris sit amet semper libero. Nulla sollicitudin arcu augue, sit amet sollicitudin augue
+      finibus vel. Maecenas hendrerit mauris lectus. Ut ornare arcu ex, vel iaculis arcu porttitor id. Vestibulum ut egestas
+      nunc. Praesent at elementum nunc. Integer sed aliquet mi. Nulla facilisi. Maecenas accumsan vehicula mi, sit amet pulvinar
+      dui ultricies mattis. Sed ut ipsum tincidunt, tristique dui eu, rhoncus sem. Aliquam congue mauris sed metus eleifend
+      pulvinar.
+    </p>
+    <button mat-button routerLink="/signin" [hidden]="isConnected">Sign in</button>
+    <button mat-button [hidden]="isConnected">Continue without account</button>
+    <button mat-button [hidden]="!isConnected" (click)="step1()">Start</button>
+  </div>
+
+  <div [hidden]="isStart">
+    <form [formGroup]="formGroup">
+      <mat-vertical-stepper formArrayName="formArray" [linear]="true">
+        <mat-step formGroupName="0" [stepControl]="formArray.get([0])">
+          <ng-template matStepLabel>Informations on the nest</ng-template>
+          <app-google-vision (fileSelected)="handleFileSelected($event)"></app-google-vision>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+
+
+        <mat-step formGroupName="1" [stepControl]="formArray.get([1])">
+          <ng-template matStepLabel>Fill out your coordinates</ng-template>
+
+          <mat-input-container>
+            <input matInput placeholder="Name" formControlName="name" required>
+            <mat-error>This field is required</mat-error>
+          </mat-input-container>
+
+          <mat-input-container>
+            <input matInput placeholder="Email address" formControlName="email" required>
+            <mat-error>The input is invalid</mat-error>
+          </mat-input-container>
+
+          <mat-input-container class="example-full-width">
+            <span matPrefix>+33 &nbsp;</span>
+            <input matInput placeholder="Telephone" pattern="/^[0-9]+*$/" formControlName="phone">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error>The phone number is invalid</mat-error>
+          </mat-input-container>
+
+          <mat-input-container>
+            <input matInput placeholder="comment" formControlName="comment">
+          </mat-input-container>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          You are now done.
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="submit()">Send</button>
+          </div>
+        </mat-step>
+
+
+      </mat-vertical-stepper>
+    </form>
+
+
+
+  </div>
+
 </div>
 <app-footer></app-footer>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input,ViewChild, AfterViewInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { GoogleCloudVisionService } from '../shared/google-cloud-vision.service';
 import { AuthService, SharedModule } from '../shared/index';
@@ -6,6 +6,8 @@ import { UploadService } from '../shared/upload.service';
 import { Upload } from '../shared/upload';
 
 import * as firebase from 'firebase';
+
+import { GoogleMapComponent } from '../google-map/google-map.component';
 
 @Component({
   selector: 'app-declaration',
@@ -28,13 +30,19 @@ export class DeclarationComponent implements OnInit {
   public items: any[];
   isLinear = true;
   formGroup: FormGroup;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  thirdFormGroup: FormGroup;
-  fourthFormGroup: FormGroup;
+  lat: number;
+  long: number;
 
+  //dataLocal: any = {};
+  
 
   @ViewChild('form') form;
+  @Input() dataLocal;
+  @ViewChild(GoogleMapComponent) mapcomponent: GoogleMapComponent;
+
+  set mapLocation(data: GoogleMapComponent) {
+    this.lat = data.lat;
+  }
 
   constructor(private authService: AuthService, 
               private vision: GoogleCloudVisionService,
@@ -126,9 +134,22 @@ export class DeclarationComponent implements OnInit {
       return Math.round(score * 100)
   }
 
+  getLatitude(lat: number) {
+    console.log('mesage', this.lat);
+    
+    return this.lat = lat;
+  }
+
+  getLongitude(long: number) {
+    console.log('message lng:', long)
+    return this.long = long;
+  }
+
   get formArray(): AbstractControl | null { return this.formGroup.get('formArray')};
 
   ngOnInit() {
+
+    console.log(this.lat)
     this.currentUid = this.authService.getCurrentUid();
 
     this.formGroup = this._formBuilder.group({
@@ -144,6 +165,10 @@ export class DeclarationComponent implements OnInit {
         }),
         this._formBuilder.group({
           comments: ['']
+        }),
+        this._formBuilder.group({
+          latitude: 0,
+          longitude: 0
         })
       ])
     })
@@ -151,8 +176,32 @@ export class DeclarationComponent implements OnInit {
   }
 
   submit(data) {
+
     console.log(this.formGroup.value);
   }
+
+  ngAfterViewInit() {
+
+    console.log(this.mapcomponent.getUserLocation())
+    console.log(this.lat)
+    setTimeout( data => {
+      console.log(this.lat);
+    }, 5000)
+    
+   
+  }
+
+  /*ngOnChanges() {
+    this.formGroup.setValue({
+      formArray: this._formBuilder.array([
+        this._formBuilder.group({
+          latitude: this.lat,
+          longitude: this.long
+        })
+      ])
+    })
+
+  } */
 
 
 }

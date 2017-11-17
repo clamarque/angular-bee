@@ -1,0 +1,10 @@
+<div id="drop">
+  <div>
+    <mat-icon>insert_photo</mat-icon>
+    <h2>Drop your files here</h2>
+    <p>Or click</p>
+    <input type="file" name="file" id="file" class="inputfile" (fileSelected)="handleFileSelected($event)" accept="image/*" />
+    <label for="file">Choose a file</label>
+    <button mat-raised-button color="warn" class="btn btn-success" (click)="upload()">Upload</button>
+  </div>
+</div>
