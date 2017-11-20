@@ -27,8 +27,20 @@ export class NestComponent implements OnInit {
     console.log(files)
   }
 
-  submit() {
-    console.log(this.formGroup.value)
+  onSubmit() {
+    if(this.formGroup.status != 'VALID') console.log('form is not valid')
+    else {
+      console.log(this.formGroup.value);
+      this.sendDeclaration(this.formGroup.value)
+    }
+  }
+
+  sendDeclaration(data) {
+    const reader = new FileReader();
+    /*const readFile = (index) => {
+
+    } */
+
   }
 
   ngOnInit() {

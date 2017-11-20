@@ -18,10 +18,9 @@ import { routing } from './app-routing.module';
 import { environment } from '../environments/environment';
 import { AuthService } from './shared/auth.service';
 import { GoogleCloudVisionService } from './shared/google-cloud-vision.service';
-import { AuthGuard } from './shared/auth.guard';
+import { AuthGuard } from './shared/guard/auth.guard';
 import { UploadService } from './shared/upload.service';
 import { GeoService } from './shared/geo.service';
-import { SpinnerService } from './shared/spinner.service';
 
 // COMPONENT
 import { AppComponent } from './app.component';
@@ -37,6 +36,7 @@ import { NestComponent } from './nest/nest.component';
 import { FooterComponent } from './footer/footer.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
 import { GoogleVisionComponent } from './google-vision/google-vision.component';
+import { FileSelectorDirective } from './shared/directives/file-selector.directive';
 
 @NgModule({
   declarations: [
@@ -52,7 +52,8 @@ import { GoogleVisionComponent } from './google-vision/google-vision.component';
     NestComponent,
     FooterComponent,
     GoogleMapComponent,
-    GoogleVisionComponent
+    GoogleVisionComponent,
+    FileSelectorDirective
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -75,8 +76,7 @@ import { GoogleVisionComponent } from './google-vision/google-vision.component';
               AngularFireDatabase, 
               GoogleCloudVisionService,
               UploadService,
-              GeoService,
-              SpinnerService
+              GeoService
             ],
   bootstrap: [AppComponent]
 })

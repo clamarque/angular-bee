@@ -15,7 +15,7 @@
   </div>
 
   <div [hidden]="isStart">
-    <form [formGroup]="formGroup">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
       <mat-vertical-stepper formArrayName="formArray" [linear]="true">
         <mat-step formGroupName="0" [stepControl]="formArray.get([0])">
           <ng-template matStepLabel>Informations on the nest</ng-template>
@@ -41,7 +41,7 @@
 
           <mat-input-container class="example-full-width">
             <span matPrefix>+33 &nbsp;</span>
-            <input matInput placeholder="Telephone" pattern="/^[0-9]+*$/" formControlName="phone">
+            <input matInput placeholder="Telephone" pattern="[0-9]*" formControlName="phone">
             <mat-icon matSuffix>phone</mat-icon>
             <mat-error>The phone number is invalid</mat-error>
           </mat-input-container>
@@ -51,7 +51,7 @@
           </mat-input-container>
           <div>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
+            <button mat-button matStepperNext [disabled]="formGroup.pristine">Send</button>
           </div>
         </mat-step>
         <mat-step>
@@ -59,7 +59,6 @@
           You are now done.
           <div>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="submit()">Send</button>
           </div>
         </mat-step>
 

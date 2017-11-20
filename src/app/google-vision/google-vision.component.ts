@@ -7,8 +7,20 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class GoogleVisionComponent implements OnInit {
   @Output() fileSelected = new EventEmitter();
+  private fileList: any = [];
+  private invalidFiles: any = [];
 
   constructor() { }
+
+  onFilesChange(fileList: FileList){
+    console.log('filelist', fileList);
+    this.fileList = fileList;
+  }
+
+  onFileInvalids(fileList : Array<File>){
+    console.log('filelist invalid', fileList);
+    this.invalidFiles = fileList;
+  }
 
   handleFileSelected(files) {
     console.log(files)
