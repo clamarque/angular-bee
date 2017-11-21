@@ -1,10 +1,13 @@
 <!-- VOIR POUR AVOIR LE CHOIX ENTRE UPLOAD FICHIER OU TULISER CAMERA DU DEVICE 
 https://github.com/doorKOnline/ng-video-example/blob/master/src/app/example/example.component.ts
 -->
-<app-google-map (latitude)="getLatitude($event)" (longitude)="getLongitude($event)"></app-google-map>
-dataLocal: {{dataLocal}}
+<!-- <app-google-map (latitude)="getLatitude($event)" (longitude)="getLongitude($event)"></app-google-map> !-->
 <div class="app-content">
-  <form [formGroup]="formGroup">
+    <input type="file" name="file" id="file" class="inputfile" (change)="selectFile($event)" accept="image/*" />
+    <label for="file">Choose a file</label>
+    <button mat-raised-button color="warn" class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+    
+  <!--<form [formGroup]="formGroup">
     <mat-vertical-stepper formArrayName="formArray" [linear]="isLinear">
         <mat-step formGroupName="0" [stepControl]="formArray.get([0])">
             <ng-template matStepLabel>Localisation</ng-template>
@@ -73,6 +76,7 @@ dataLocal: {{dataLocal}}
         </mat-step>
     </mat-vertical-stepper>
   </form>
+-->
 
 
   <!-- 

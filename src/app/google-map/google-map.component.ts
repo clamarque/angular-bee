@@ -8,6 +8,7 @@ import { GeoService } from '../shared/geo.service';
 })
 
 export class GoogleMapComponent implements OnInit {
+  private location: any = [];  
   lat: number;
   lng: number;
   markers: any;
@@ -15,6 +16,7 @@ export class GoogleMapComponent implements OnInit {
 
   @Output() latitude: EventEmitter<number> = new EventEmitter<number>();
   @Output() longitude: EventEmitter<number> = new EventEmitter<number>();
+  @Output() placeLocation = new EventEmitter();
 
   constructor(private geo: GeoService) { }
 
@@ -28,8 +30,15 @@ export class GoogleMapComponent implements OnInit {
           this.lat = position.coords.latitude;
           this.lng = position.coords.longitude;
 
+          this.location.push({
+            latitude: this.lat,
+            longitude: this.lng
+          });
+          console.log(this.location);
+
           this.latitude.emit(this.lat);
           this.longitude.emit(this.lng);
+          this.placeLocation.emit(this.location);
 
           this.geo.getLocations(100, [this.lat, this.lng])
         })
@@ -54,7 +63,7 @@ export class GoogleMapComponent implements OnInit {
 
   ngOnInit() {
     //this.seedDatabase();
-    this.getUserLocation();
+    //this.getUserLocation();
     this.subscription = this.geo.hits.subscribe(hits => {
       console.log('hits: ', hits)
       this.markers = hits

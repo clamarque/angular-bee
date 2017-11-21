@@ -12,6 +12,7 @@ export class NestComponent implements OnInit {
   isConnected: boolean = false;
   isBeginning: boolean = false;
   isStart: boolean = true;
+  pictures = []
   formGroup: FormGroup;
 
 
@@ -25,31 +26,37 @@ export class NestComponent implements OnInit {
   }
   handleFileSelected(files) {
     console.log(files)
-  }
-
-  onSubmit() {
-    if(this.formGroup.status != 'VALID') console.log('form is not valid')
-    else {
-      console.log(this.formGroup.value);
-      this.sendDeclaration(this.formGroup.value)
+    if (files.length > 0) {
+      for (let file of files) {
+        // https://stackoverflow.com/questions/39229398/how-to-update-controls-of-formarray
+        // set value picture        
+        const control = (<FormArray>this.formGroup.controls['formArray']).at(0).patchValue({
+          picture: file.name});
+      }
     }
   }
 
-  sendDeclaration(data) {
-    const reader = new FileReader();
-    /*const readFile = (index) => {
+  handleLocation(location) {
+    console.log(location);
+  }
 
-    } */
-
+  onSubmit() {
+    if (this.formGroup.status != 'VALID') console.log('form is not valid')
+    else {
+      console.log('data: ', this.formGroup.value, 'pictures:', this.pictures)
+      //this.sendDeclaration(this.formGroup.value)
+    }
   }
 
   ngOnInit() {
     this.authService.isLoggin().subscribe(authStatus => { return authStatus === true ? this.isConnected = true : this.isConnected = false; })
-      
+
     this.formGroup = this._formBuilder.group({
       formArray: this._formBuilder.array([
         this._formBuilder.group({
-
+          picture: [''],
+          latitude: 0,
+          longitude: 0
         }),
         this._formBuilder.group({
           name: ['', Validators.required],

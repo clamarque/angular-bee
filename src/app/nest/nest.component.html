@@ -19,7 +19,12 @@
       <mat-vertical-stepper formArrayName="formArray" [linear]="true">
         <mat-step formGroupName="0" [stepControl]="formArray.get([0])">
           <ng-template matStepLabel>Informations on the nest</ng-template>
-          <app-google-vision (fileSelected)="handleFileSelected($event)"></app-google-vision>
+          <h2>Pictures from the nest</h2>
+          <app-google-vision (fileChange)="handleFileSelected($event)"></app-google-vision>
+          <h2>Localisation</h2>
+          <app-google-map (placeLocation)="handleLocation($event)"></app-google-map>
+          <h3>Or</h3>
+          <button mat-raised-button type="button" (click)="setLocation()">Set location</button>
           <div>
             <button mat-button matStepperNext>Next</button>
           </div>
@@ -51,7 +56,7 @@
           </mat-input-container>
           <div>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext [disabled]="formGroup.pristine">Send</button>
+            <button mat-button matStepperNext [disabled]="formGroup.pristine">Next</button>
           </div>
         </mat-step>
         <mat-step>

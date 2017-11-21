@@ -5,26 +5,31 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   templateUrl: './google-vision.component.html',
   styleUrls: ['./google-vision.component.scss']
 })
+
+
 export class GoogleVisionComponent implements OnInit {
-  @Output() fileSelected = new EventEmitter();
   private fileList: any = [];
   private invalidFiles: any = [];
+  @Output() fileChange = new EventEmitter();
 
   constructor() { }
 
   onFilesChange(fileList: FileList){
-    console.log('filelist', fileList);
     this.fileList = fileList;
+    console.log('onfileschange filelist', this.fileList);
+    let reader = new FileReader();
+    for(let file of this.fileList) {
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+      }
+
+    }
+    this.fileChange.emit(this.fileList);
   }
 
   onFileInvalids(fileList : Array<File>){
-    console.log('filelist invalid', fileList);
+    //console.log('onfileinvalid filelist', fileList);
     this.invalidFiles = fileList;
-  }
-
-  handleFileSelected(files) {
-    console.log(files)
-    this.fileSelected.emit(files)
   }
 
   ngOnInit() {

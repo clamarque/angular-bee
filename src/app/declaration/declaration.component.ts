@@ -51,10 +51,12 @@ export class DeclarationComponent implements OnInit {
 
   selectFile(event) {
     this.selectedFiles = event.target.files;
+    console.log('selectedfiles', this.selectedFiles)
     this.fileChosen = this.selectedFiles.item(0).name;
   }
 
   upload(event) {
+    console.log('event upload',event)
     this.onAnalyzed = true;
     this.isUpload = true;
     const file = this.selectedFiles.item(0);
@@ -180,6 +182,7 @@ export class DeclarationComponent implements OnInit {
     console.log(this.formGroup.value);
   }
 
+  /*
   ngAfterViewInit() {
 
     console.log(this.mapcomponent.getUserLocation())
@@ -190,6 +193,7 @@ export class DeclarationComponent implements OnInit {
     
    
   }
+  */
 
   /*ngOnChanges() {
     this.formGroup.setValue({

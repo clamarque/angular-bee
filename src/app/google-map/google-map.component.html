@@ -1,5 +1,5 @@
 <div *ngIf="lat && lng">
-  <agm-map [latitude]="lat" [longitude]="lng">
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
     <agm-marker [latitude]="lat" [longitude]="lng">
       <agm-info-window>
         <h3>Hody</h3>
@@ -8,4 +8,8 @@
     </agm-marker>
 
   </agm-map>
+
 </div>
+
+<button mat-raised-button type="button" (click)="getUserLocation()">Get location</button>
+
