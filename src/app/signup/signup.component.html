@@ -1,18 +1,21 @@
-<div class="flex">
-  <form (ngSubmit)="submit(formData.value)" #formData="ngForm">
-    <div class="form-container">
+<div class="app-primary-header">
+  <h1>Sign up</h1>
+</div>
 
+<div class="app-content">
+  <form (ngSubmit)="submit(formData.value)" #formData="ngForm">
       <mat-form-field>
         <input matInput placeholder="Email" name="email" [ngModel]="email" required>
+        <mat-error>This field is required</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Password" name="password" [ngModel]="password" [type]="hide ? 'password' : 'text'"
-          required>
+        <input matInput placeholder="Password" name="password" [ngModel]="password" [type]="hide ? 'password' : 'text'" required>
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <mat-error>This field is required</mat-error>
       </mat-form-field>
-    </div>
+    
     <button mat-raised-button type="submit">Sign up</button>
   </form>
 </div>
-  
+<app-footer></app-footer>

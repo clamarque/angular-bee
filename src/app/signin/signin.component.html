@@ -6,75 +6,18 @@
   <form (ngSubmit)='submit(formData.value)' #formData='ngForm'>
     <mat-form-field>
       <input matInput placeholder="Email" name="email" [ngModel]="email" required>
+      <mat-error>This field is required</mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <input matInput placeholder="Password" name="password" [ngModel]="password" [type]="hide ? 'password' : 'text'" required>
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      <mat-error>This field is required</mat-error>
     </mat-form-field>
 
-    <button mat-raised-button type="submit" class="flex">Sign in</button>
+    <button mat-raised-button type="submit">Sign in</button>
     <button mat-raised-button (click)="createAccount()" type="button" id="btn-signup">Sign up</button>
   </form>
 </div>
 
-<!--
-<mat-nav-list class="docs-guide-list mat-nav-list" role="list">
-  <a class="docs-guide-item mat-list-item" mat-list-item="" role="listitem" href="/guide/getting-started">
-    <div class="mat-list-item-content">
-      <div class="mat-list-item-ripple mat-ripple" mat-ripple=""></div>
-      <div class="mat-list-text"></div>
-      Getting started
-    </div>
-  </a>
-  <a class="docs-guide-item mat-list-item" mat-list-item="" role="listitem" href="/guide/theming">
-    <div class="mat-list-item-content">
-      <div class="mat-list-item-ripple mat-ripple" mat-ripple=""></div>
-      <div class="mat-list-text"></div>
-      Theming Angular Material
-    </div>
-  </a>
-  <a class="docs-guide-item mat-list-item" mat-list-item="" role="listitem" href="/guide/theming-your-components">
-    <div class="mat-list-item-content">
-      <div class="mat-list-item-ripple mat-ripple" mat-ripple=""></div>
-      <div class="mat-list-text"></div>
-      Theming your own components
-    </div>
-  </a>
-  <a class="docs-guide-item mat-list-item" mat-list-item="" role="listitem" href="/guide/typography">
-    <div class="mat-list-item-content">
-      <div class="mat-list-item-ripple mat-ripple" mat-ripple=""></div>
-      <div class="mat-list-text"></div>
-      Using Angular Material's Typography
-    </div>
-  </a>
-  <a class="docs-guide-item mat-list-item" mat-list-item="" role="listitem" href="/guide/cdk-table">
-    <div class="mat-list-item-content">
-      <div class="mat-list-item-ripple mat-ripple" mat-ripple=""></div>
-      <div class="mat-list-text"></div>
-      CDK data-table
-    </div>
-  </a>
-  <a class="docs-guide-item mat-list-item" mat-list-item="" role="listitem" href="/guide/customizing-component-styles">
-    <div class="mat-list-item-content">
-      <div class="mat-list-item-ripple mat-ripple" mat-ripple=""></div>
-      <div class="mat-list-text"></div>
-      Customizing component styles
-    </div>
-  </a>
-  <a class="docs-guide-item mat-list-item" mat-list-item="" role="listitem" href="/guide/creating-a-custom-form-field-control">
-    <div class="mat-list-item-content">
-      <div class="mat-list-item-ripple mat-ripple" mat-ripple=""></div>
-      <div class="mat-list-text"></div>
-      Creating a custom form field control
-    </div>
-  </a>
-  <a class="docs-guide-item mat-list-item" mat-list-item="" role="listitem" href="/guide/elevation">
-    <div class="mat-list-item-content">
-      <div class="mat-list-item-ripple mat-ripple" mat-ripple=""></div>
-      <div class="mat-list-text"></div>
-      Using elevation helpers
-    </div>
-  </a>
-</mat-nav-list>-->
 <app-footer></app-footer>
