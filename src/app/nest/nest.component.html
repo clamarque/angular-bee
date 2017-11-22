@@ -1,16 +1,14 @@
 <div class="app-content">
   <div class="setp0" [hidden]="isBeginning">
     <h1>Declare a nest</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam molestie, magna ac placerat dignissim, lacus eros commodo
-      mauris, at maximus quam felis vel sapien. Maecenas viverra, tortor vel tincidunt pellentesque, odio dui faucibus nisi,
-      a placerat nunc orci in ex. Mauris sit amet semper libero. Nulla sollicitudin arcu augue, sit amet sollicitudin augue
-      finibus vel. Maecenas hendrerit mauris lectus. Ut ornare arcu ex, vel iaculis arcu porttitor id. Vestibulum ut egestas
-      nunc. Praesent at elementum nunc. Integer sed aliquet mi. Nulla facilisi. Maecenas accumsan vehicula mi, sit amet pulvinar
-      dui ultricies mattis. Sed ut ipsum tincidunt, tristique dui eu, rhoncus sem. Aliquam congue mauris sed metus eleifend
-      pulvinar.
-    </p>
+    <p>The Asian hornets has already begun to invade French territory and its impact on bee populations and hives are devastating.
+      "Bees and other pollinating insects play an important role in plant survival through ollination work, particularly
+      for more than 20,000 plant species in Europe, of which 40% are fruits, vegetables or oilseeds." (Cf. Wikipedia). For
+      the moment, no European action is triggered. This application is a way to fight this plague by declaring as much as
+      possible Asian hornets nests. Anyone can use this application, especially during walks in the forest or anywhere, do
+      not hesitate! The bees are counting on you!</p>
     <button mat-button routerLink="/signin" [hidden]="isConnected">Sign in</button>
-    <button mat-button [hidden]="isConnected">Continue without account</button>
+    <button mat-button [hidden]="isConnected" (click)="step1()">Continue without account</button>
     <button mat-button [hidden]="!isConnected" (click)="step1()">Start</button>
   </div>
 
@@ -25,6 +23,12 @@
           <app-google-map (placeLocation)="handleLocation($event)"></app-google-map>
           <h3>Or</h3>
           <button mat-raised-button type="button" (click)="setLocation()">Set location</button>
+          <mat-input-container [hidden]="isSetLocation">
+            <input matInput placeholder="Latitude" formControlName="latitude" required>
+          </mat-input-container>
+          <mat-input-container [hidden]="isSetLocation">
+            <input matInput placeholder="Longitude" formControlName="longitude" required>
+          </mat-input-container>
           <div>
             <button mat-button matStepperNext>Next</button>
           </div>
