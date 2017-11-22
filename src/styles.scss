@@ -26,6 +26,10 @@ a {
     outline: none;
 }
 
+button {
+    margin: 10px 0 !important;
+}
+
 .active {
     color: #FFF !important;
     background: #795726;
@@ -88,7 +92,7 @@ app-root {
 
 
 app {
-    &-declaration, &-home, &-history, &-nest, &-profile, &-signin {
+    &-declaration, &-home, &-history, &-nest, &-profile, &-signin, &-signup {
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -110,7 +114,7 @@ app {
 
 .app-content {
     flex-grow: 1;
-    margin: 40px 0 0;
+    margin: 40px 20px 0;
 }
 
 /*
@@ -177,27 +181,16 @@ nav {
     color: rgba(255, 255, 255, 0.87);
 }
 
-
-/*
- * AGM
- */
- agm-map {
-    height: 300px;
-  }
-
-
 /*
  * HOMEPAGE
  */
-
- 
 .grid-tile {
     display: block;
     flex: 2;
 }
 
 .grid-content {
-    display: inherit;
+    display: flex;
     flex-direction: column;
     text-align: center;
     padding: 15px;
@@ -224,27 +217,15 @@ nav {
  /*
   * DECLARATION 
   */
-.example-right-align {
-    text-align: right;
+
+.mat-stepper-horizontal, .mat-stepper-vertical {
+      width: 100%;
 }
-/*
-[id="drop"] {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 400px;
-    height: 200px;
-    margin: 10px 0 20px;
-    padding: 10px;
-    border: 4px dotted #d3d3d3;
-}*/
 
 .dropzone {
     display: table;
-    height: 300px;
-    width: 300px;
+    height: 100%;
+    width: 100%;
     border: 4px dotted #d3d3d3;
 
     .text-wrapper {
@@ -257,8 +238,13 @@ nav {
         justify-content: center;
         align-items: center;
     }
-
 }
+
+agm-map {
+    height: 400px;
+    width: 100%;
+
+  }
 
 
 /*
