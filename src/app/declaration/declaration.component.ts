@@ -28,21 +28,10 @@ export class DeclarationComponent implements OnInit {
   public fileAnalyzedUrl: string;
   public fileAnalyzedDate: string;
   public items: any[];
-  isLinear = true;
-  formGroup: FormGroup;
-  lat: number;
-  long: number;
 
-  //dataLocal: any = {};
   
 
   @ViewChild('form') form;
-  @Input() dataLocal;
-  @ViewChild(GoogleMapComponent) mapcomponent: GoogleMapComponent;
-
-  set mapLocation(data: GoogleMapComponent) {
-    this.lat = data.lat;
-  }
 
   constructor(private authService: AuthService, 
               private vision: GoogleCloudVisionService,
@@ -62,18 +51,11 @@ export class DeclarationComponent implements OnInit {
     const file = this.selectedFiles.item(0);
     console.log('file', file)
     
-    /*if(file.toString().match(/\.(jpg|png|gif)$/)) {
-      this.currentFileUpload = new Upload(file);
-    }
-    else {
-      console.log('error import img')
-    } */
-
     this.currentFileUpload = new Upload(file);
     
     let reader = new FileReader();
       reader.readAsDataURL(file);
-      /*reader.onload = () => {
+      reader.onload = () => {
         this.vision.getLabels(reader.result.split(',')[1]).subscribe(response => {
 
           this.fileAnalyzedName = file.name;
@@ -88,12 +70,9 @@ export class DeclarationComponent implements OnInit {
           this.selectedFiles = null;
           this.fileChosen = "";
         });
-      };*/
+      };
   }
 
-  // A quoi sert cette fonction ? Je comprends bien que cela analyse le score de correspondance d une guepe
-  // Mais pq tu n utilises pas deja la variable item.score ?
-  
   analyzePicture(results) {
     var maxScore = 0;
     this.items = [];
@@ -136,76 +115,9 @@ export class DeclarationComponent implements OnInit {
       return Math.round(score * 100)
   }
 
-  getLatitude(lat: number) {
-    console.log('mesage', this.lat);
-    
-    return this.lat = lat;
-  }
-
-  getLongitude(long: number) {
-    console.log('message lng:', long)
-    return this.long = long;
-  }
-
-  get formArray(): AbstractControl | null { return this.formGroup.get('formArray')};
 
   ngOnInit() {
 
-    console.log(this.lat)
-    this.currentUid = this.authService.getCurrentUid();
-
-    this.formGroup = this._formBuilder.group({
-      formArray : this._formBuilder.array([
-        this._formBuilder.group({
-          name: ['', Validators.required]
-        }),
-        this._formBuilder.group({
-          email: ['', Validators.email]
-        }),
-        this._formBuilder.group({
-          phone: ['']
-        }),
-        this._formBuilder.group({
-          comments: ['']
-        }),
-        this._formBuilder.group({
-          latitude: 0,
-          longitude: 0
-        })
-      ])
-    })
-
+  
   }
-
-  submit(data) {
-
-    console.log(this.formGroup.value);
-  }
-
-  /*
-  ngAfterViewInit() {
-
-    console.log(this.mapcomponent.getUserLocation())
-    console.log(this.lat)
-    setTimeout( data => {
-      console.log(this.lat);
-    }, 5000)
-    
-   
-  }
-  */
-
-  /*ngOnChanges() {
-    this.formGroup.setValue({
-      formArray: this._formBuilder.array([
-        this._formBuilder.group({
-          latitude: this.lat,
-          longitude: this.long
-        })
-      ])
-    })
-
-  } */
-
-
 }
