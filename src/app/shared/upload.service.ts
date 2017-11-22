@@ -33,8 +33,7 @@ export class UploadService {
      );
   }
   
-    private saveFileData(fileUpload: Upload, currentUid: string, 
-                        results: string, percent: number) {
+    private saveFileData(fileUpload: Upload, currentUid: string, results: string, percent: number) {
       this.db.list(`${this.basePath}/` + currentUid).push({
           image: fileUpload,
           results: results,
