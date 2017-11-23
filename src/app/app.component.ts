@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from './shared/auth.service';
+import { AuthService } from './shared/index';
 import { Router } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';

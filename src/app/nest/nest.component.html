@@ -65,12 +65,12 @@
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Done</ng-template>
-          You are now done.
+          <p>You are now done. If you want to change your answers, click on return or click send to finalize your return. Thanking you.</p>
           <div>
             <button mat-button matStepperPrevious>Back</button>
+            <button mat-raised-button (click)="confirmDialog()">Send</button>
           </div>
         </mat-step>
-
 
       </mat-vertical-stepper>
     </form>

@@ -246,6 +246,17 @@ agm-map {
 
   }
 
+  dialog-confirme {
+
+    .mat-dialog-actions {
+        justify-content: center;
+    }
+
+    button {
+        margin: 0 !important;
+    }
+
+  }
 
 /*
  * FOOTER

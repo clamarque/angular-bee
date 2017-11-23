@@ -1,56 +1,59 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { 
-  MatToolbarModule, 
+import {  
   MatButtonModule, 
   MatCheckboxModule,
-  MatInputModule, 
-  MatFormFieldModule,
-  MatIconModule, 
-  MatGridListModule, 
-  MatMenuModule, 
-  MatSnackBarModule, 
-  MatListModule, 
-  MatProgressBarModule, 
   MatCardModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,  
+  MatInputModule,
+  MatListModule,
+  MatMenuModule, 
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatSnackBarModule,
   MatStepperModule,
-  MatProgressSpinnerModule
+  MatToolbarModule
    } from '@angular/material';
 
 @NgModule({
   imports: [
-    FormsModule, 
-    MatCheckboxModule, 
+    FormsModule,
     MatButtonModule, 
-    MatToolbarModule, 
-    MatInputModule, 
-    MatFormFieldModule, 
-    MatIconModule, 
-    MatGridListModule, 
-    MatMenuModule, 
-    MatSnackBarModule, 
-    MatListModule, 
-    MatProgressBarModule, 
+    MatCheckboxModule,
     MatCardModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,  
+    MatInputModule,
+    MatListModule,
+    MatMenuModule, 
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
     MatStepperModule,
-    MatProgressSpinnerModule
+    MatToolbarModule
     ],
   exports: [
     FormsModule, 
-    MatCheckboxModule, 
     MatButtonModule, 
-    MatToolbarModule, 
-    MatInputModule, 
-    MatFormFieldModule, 
-    MatIconModule, 
-    MatGridListModule, 
-    MatMenuModule, 
-    MatSnackBarModule, 
-    MatListModule, 
-    MatProgressBarModule, 
+    MatCheckboxModule,
     MatCardModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,  
+    MatInputModule,
+    MatListModule,
+    MatMenuModule, 
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
     MatStepperModule,
-    MatProgressSpinnerModule
+    MatToolbarModule
     ]
 })
 

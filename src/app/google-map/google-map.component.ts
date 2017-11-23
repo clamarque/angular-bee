@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { GeoService } from '../shared/geo.service';
+import { GeoService } from '../shared/index';
 
 @Component({
   selector: 'app-google-map',

@@ -16,43 +16,43 @@ import { routing } from './app-routing.module';
 
 // SERVICE
 import { environment } from '../environments/environment';
-import { AuthService } from './shared/auth.service';
-import { GoogleCloudVisionService } from './shared/google-cloud-vision.service';
-import { AuthGuard } from './shared/guard/auth.guard';
-import { UploadService } from './shared/upload.service';
-import { GeoService } from './shared/geo.service';
+import { AuthGuard, AuthService, GoogleCloudVisionService, GeoService, UploadService } from './shared/index';
 
 // COMPONENT
 import { AppComponent } from './app.component';
-import { SignInComponent } from './signin/signin.component';
-import { HomeComponent } from './home/home.component';
-import { NotFoundComponent } from './not-found.component';
-import { SignUpComponent } from './signup/signup.component';
-import { ProfileComponent } from './profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
 import { DeclarationComponent } from './declaration/declaration.component';
-import { HistoryComponent } from './history/history.component';
-import { NestComponent } from './nest/nest.component';
+import { DialogConfirme } from './nest/nest.component';
 import { FooterComponent } from './footer/footer.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
 import { GoogleVisionComponent } from './google-vision/google-vision.component';
+import { HistoryComponent } from './history/history.component';
+import { HomeComponent } from './home/home.component';
+import { NestComponent } from './nest/nest.component';
+import { NotFoundComponent } from './not-found.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SignInComponent } from './signin/signin.component';
+import { SignUpComponent } from './signup/signup.component';
+
+// DIRECTIVE
 import { FileSelectorDirective } from './shared/directives/file-selector.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignInComponent,
-    HomeComponent,
-    NotFoundComponent,
-    SignUpComponent,
-    ProfileComponent,
     ContactComponent,
     DeclarationComponent,
-    HistoryComponent,
-    NestComponent,
+    DialogConfirme,
     FooterComponent,
     GoogleMapComponent,
     GoogleVisionComponent,
+    HomeComponent,
+    HistoryComponent,
+    NestComponent,
+    NotFoundComponent,
+    ProfileComponent,
+    SignInComponent,
+    SignUpComponent,
     FileSelectorDirective
   ],
   imports: [
@@ -78,6 +78,9 @@ import { FileSelectorDirective } from './shared/directives/file-selector.directi
               UploadService,
               GeoService
             ],
+  entryComponents: [
+    DialogConfirme
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

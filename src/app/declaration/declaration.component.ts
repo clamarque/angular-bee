@@ -1,13 +1,10 @@
 import { Component, OnInit, Input,ViewChild, AfterViewInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { GoogleCloudVisionService } from '../shared/google-cloud-vision.service';
-import { AuthService, SharedModule } from '../shared/index';
-import { UploadService } from '../shared/upload.service';
-import { Upload } from '../shared/upload';
+import { GoogleCloudVisionService, AuthService, UploadService } from '../shared/index';
+import { SharedModule } from '../shared/shared.module';
+import { Upload } from '../shared/services/upload/upload';
 
 import * as firebase from 'firebase';
-
-import { GoogleMapComponent } from '../google-map/google-map.component';
 
 @Component({
   selector: 'app-declaration',
@@ -117,6 +114,9 @@ export class DeclarationComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.currentUid = this.authService.getCurrentUid(); 
+    console.log('currentid', this.currentUid);
 
   
   }
