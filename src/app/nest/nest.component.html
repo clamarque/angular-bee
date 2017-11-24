@@ -8,6 +8,8 @@
       possible Asian hornets nests. Anyone can use this application, especially during walks in the forest or anywhere, do
       not hesitate! The bees are counting on you!</p>
     <button mat-button routerLink="/signin" [hidden]="isConnected">Sign in</button>
+    <button mat-button routerLink="/nest">Nest</button>
+    
     <button mat-button [hidden]="isConnected" (click)="step1()">Continue without account</button>
     <button mat-button [hidden]="!isConnected" (click)="step1()">Start</button>
   </div>

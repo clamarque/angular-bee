@@ -54,6 +54,7 @@ export class DeclarationComponent implements OnInit {
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.vision.getLabels(reader.result.split(',')[1]).subscribe(response => {
+          console.log('result vision', response)
 
           this.fileAnalyzedName = file.name;
           this.fileAnalyzedpercent = this.analyzePicture(response.json().responses);

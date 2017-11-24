@@ -3,10 +3,9 @@
   <div class="text-wrapper">
     <div class="centered">
       <mat-icon>insert_photo</mat-icon>
-      <h2>Drop your file here !</h2>
-      <h3>or</h3>
-      <input type="file" value="" id="upload">
-      <label for="upload">Choose a file</label>
+      <p>Drag image file here or </p>
+      <input type="file" value="" id="upload" hidden>
+      <label for="upload">Browse from your device</label>
     </div>
   </div>
 </div>
@@ -23,3 +22,32 @@
     </li>
   </ul>
 </div>
+
+<div [hidden]="!onAnalyzed">
+    <mat-progress-bar mode="determinate" value="{{progress.percentage}}"></mat-progress-bar>
+    <div class="progressbar-text">{{progress.percentage}}%</div>
+  </div>
+
+  <div [hidden]="!isAnalyzed">
+    <mat-card class="card-bee">
+      <mat-card-header>
+        <mat-card-title>nom fichier</mat-card-title>
+        <mat-card-subtitle>date </mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{fileAnalyzedUrl}}" alt="Analyzed picture">
+      <mat-card-content>
+        <div class="fullwidth">
+          <mat-icon [ngStyle]="{backgroundColor: getColor()}" class="result-icon">{{getIcon()}}</mat-icon>
+        </div>
+
+        <div *ngFor="let item of items">
+          <div class="analyzeItem">
+            <div class="analyzeLabel">{{item.description}} : {{convertScore(item.score)}} % </div>
+            <mat-progress-bar class="analyzeProgressbar" mode="determinate" [value]="convertScore(item.score)"></mat-progress-bar>
+          </div>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+
+  </div>

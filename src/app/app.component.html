@@ -1,55 +1,36 @@
 <nav class="navbar-header">
-  <a aria-label="Angular Bee" class="mat-button" mat-button="" routerLink="/">
-    <span class="mat-button-wrapper">
-      <img alt="angular" class="angular-logo" src="../../assets/img/homepage/angular-white-transparent.svg">
-      <span>Bee</span>
-    </span>
-    <div class="mat-button-ripple mat-ripple" matripple=""></div>
-    <div class="mat-button-focus-overlay"></div>
+  <a aria-label="Angular Bee" mat-button routerLink="/">
+    <img alt="angular" class="angular-logo" src="../../assets/img/homepage/angular-white-transparent.svg">
+    <span>Bee</span>
   </a>
   <!---->
-  <a class="mat-button" mat-button="" routerLink="/declaration" routerLinkActive="active" [hidden]="!isConnected">
-    <span class="mat-button-wrapper">
-      <mat-icon>list</mat-icon> <p>Declaration</p>
-    </span>
-    <div class="mat-button-ripple mat-ripple" matripple=""></div>
-    <div class="mat-button-focus-overlay"></div>
+  <a mat-button routerLink="/declaration" routerLinkActive="active" [hidden]="!isConnected">
+    <mat-icon>list</mat-icon>
+    <span>Declaration</span>
   </a>
-  <a class="mat-button" mat-button="" routerLink="/history" routerLinkActive="active" [hidden]="!isConnected">
-    <span class="mat-button-wrapper">
-      <mat-icon>history</mat-icon> <p>History</p>
-    </span>
-    <div class="mat-button-ripple mat-ripple" matripple=""></div>
-    <div class="mat-button-focus-overlay"></div>
+  <a mat-button routerLink="/history" routerLinkActive="active" [hidden]="!isConnected">
+    <mat-icon>history</mat-icon>
+    <span>History</span>
   </a>
-  <a class="mat-button" mat-button="" routerLink="/nest" routerLinkActive="active">
-    <span class="mat-button-wrapper">
-      <mat-icon>create</mat-icon> <p>Nest</p></span>
-    <div class="mat-button-ripple mat-ripple" matripple=""></div>
-    <div class="mat-button-focus-overlay"></div>
+
+  <a mat-button routerLink="/nest" routerLinkActive="active">
+    <mat-icon>create</mat-icon>
+    <span>Nest</span>
   </a>
+
   <div class="flex-spacer"></div>
 
-  <a class="mat-button" mat-button="" routerLink="/signin" routerLinkActive="active" [hidden]="isConnected">
-    <span class="mat-button-wrapper">
-      <mat-icon>account_circle</mat-icon> <p>Sign in</p>
-    </span>
-    <div class="mat-button-ripple mat-ripple" matripple=""></div>
-    <div class="mat-button-focus-overlay"></div>
+  <a mat-button routerLink="/signin" routerLinkActive="active" [hidden]="isConnected">
+    <mat-icon>account_circle</mat-icon>
+    <span>Sign in</span>
   </a>
-  <a class="mat-button" mat-button="" routerLink="/profile" routerLinkActive="active" [hidden]="!isConnected">
-    <span class="mat-button-wrapper">
-      <mat-icon>account_circle</mat-icon> <p>Profile</p> 
-    </span>
-    <div class="mat-button-ripple mat-ripple" matripple=""></div>
-    <div class="mat-button-focus-overlay"></div>
+  <a mat-button routerLink="/profile" routerLinkActive="active" [hidden]="!isConnected">
+    <mat-icon>account_circle</mat-icon>
+    <span>Profile</span>
   </a>
-  <a class="mat-button" mat-button="" (click)="logout()" [hidden]="!isConnected">
-      <span class="mat-button-wrapper">
-        <mat-icon>power_settings_new</mat-icon> <p>Log out</p>
-      </span>
-      <div class="mat-button-ripple mat-ripple" matripple=""></div>
-      <div class="mat-button-focus-overlay"></div>
+  <a mat-button (click)="logout()" [hidden]="!isConnected">
+    <mat-icon>power_settings_new</mat-icon>
+    <span>Log out</span>
   </a>
 
   <!--
@@ -62,23 +43,4 @@
   </mat-menu>
 -->
 </nav>
-<!--
-<mat-toolbar color='primary'>
-  <a class="mat-button" routerLink="/">Angular Bee</a>
-  <a class="mat-button" routerLink="/declaration" [hidden]="!isConnected"> Declaration</a>
-  <a class="mat-button" routerLink="/history" [hidden]="!isConnected"> History</a>
-  <a class="mat-button" routerLink="/nest" [hidden]="!isConnected"> Nest</a>
-  <div class="flex-spacer"></div>
-  <a class="mat-button" routerLink="/signin" [hidden]="isConnected"> Sign in</a>
-  <button mat-button [matMenuTriggerFor]="menu" [ngStyle]="{display : !isConnected ? 'none' : ''}">Profile</button>
-  <mat-menu #menu="matMenu">
-    <a class="mat-menu-item" routerLink="/profile">
-      <mat-icon>settings</mat-icon>Parameter</a>
-    <a class="mat-menu-item" (click)="logout()">
-      <mat-icon>power_settings_new</mat-icon>Log out</a>
-  </mat-menu>
-</mat-toolbar>
-
--->
-<mat-progress-spinner *ngIf="activeSpinner"></mat-progress-spinner>
 <router-outlet></router-outlet>
