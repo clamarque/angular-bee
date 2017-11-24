@@ -146,14 +146,14 @@ nav {
         font-size: 1.1rem;
     }
 
-    p {
+    /*p {
         display: inline-block;
         margin: 0;
 
         @media screen and (max-width: 730px) {
             text-indent:  -9999px;
         }
-    }
+    }*/
     .flex-spacer {
         flex-grow: 1;
 
@@ -215,9 +215,13 @@ nav {
  }
 
  /*
-  * DECLARATION 
+  * DECLARATION / NEST
   */
-
+app-nest {
+    label {
+        cursor: pointer;
+    }
+}
 .mat-stepper-horizontal, .mat-stepper-vertical {
       width: 100%;
 }
@@ -231,6 +235,7 @@ nav {
     .text-wrapper {
         display: table-cell;
         vertical-align: middle;
+        padding: 10px 0;
     }
     .centered {
         display: flex;
@@ -246,7 +251,7 @@ agm-map {
 
   }
 
-  dialog-confirme {
+dialog-confirme {
 
     .mat-dialog-actions {
         justify-content: center;
@@ -256,8 +261,14 @@ agm-map {
         margin: 0 !important;
     }
 
-  }
+}
 
+.analyzeLabel {
+    font-size: 1rem;
+}
+  mat-progress-bar {
+      margin: 8px 0 ;
+  }
 /*
  * FOOTER
  */ 
