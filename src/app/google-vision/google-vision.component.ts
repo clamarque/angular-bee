@@ -17,6 +17,9 @@ export class GoogleVisionComponent implements OnInit {
   currentFileUpload: Upload;
   fileAnalyzedpercent: number;
   items: any[];
+  image_preview;
+  image_name;
+  image_date;
   onAnalyzed: boolean = false;
   fileChosen: string = "";
   isAnalyzed: boolean = false;
@@ -35,8 +38,11 @@ export class GoogleVisionComponent implements OnInit {
 
     for (let file of this.fileList) {
       reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.vision.getLabels(reader.result.split(',')[1]).subscribe(response => {
+      this.image_name = file.name;
+      this.image_date = file.lastModifiedDate;
+      reader.onload = (e: any) => {
+        this.image_preview = e.target.result;
+        this.vision.getLabels(e.target.result.split(',')[1]).subscribe(response => {
           this.isAnalyzed = true;
           this.onAnalyzed = false;
           this.fileAnalyzedpercent = this.analyzePicture(response.json().responses);
@@ -81,28 +87,13 @@ export class GoogleVisionComponent implements OnInit {
     return maxScore;
   }
 
-  getIcon() {
-    if (this.fileAnalyzedpercent >= 0.75)
-      return "check";
-    else
-      return "clear";
-  }
-
-  getColor() {
-    if (this.fileAnalyzedpercent >= 1)
-      return "#4CAF50";
-    else if (this.fileAnalyzedpercent >= 0.75)
-      return "#FF9800";
-    else
-      return "#FF5722";
-  }
-
   convertScore(score: number) {
     if (score >= 1)
       return 100
     else
       return Math.round(score * 100)
   }
+
 
   onFileInvalids(fileList: Array<File>) {
     //console.log('onfileinvalid filelist', fileList);

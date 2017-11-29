@@ -1,15 +1,19 @@
 <div class="app-content">
   <div class="setp0" [hidden]="isBeginning">
     <h1>Declare a nest</h1>
-    <p>The Asian hornets has already begun to invade French territory and its impact on bee populations and hives are devastating.
-      "Bees and other pollinating insects play an important role in plant survival through ollination work, particularly
-      for more than 20,000 plant species in Europe, of which 40% are fruits, vegetables or oilseeds." (Cf. Wikipedia). For
-      the moment, no European action is triggered. This application is a way to fight this plague by declaring as much as
-      possible Asian hornets nests. Anyone can use this application, especially during walks in the forest or anywhere, do
-      not hesitate! The bees are counting on you!</p>
+    <p>This page will allow you to complete a declaration. The first step is not mandatory, however, to verify your statements,
+      it is recommended to provide a photo and the position of the nest or asian hornets. When you import an image, it will
+      be analyzed. if you get this icon:
+      <mat-icon class="mat-green">check</mat-icon> It's good ! your picture is a asian hornets. otherwise you will have this icon:
+      <mat-icon class="mat-red">clear</mat-icon> . Underneath you will have additional information about your image. in step 2, some fields are required
+      to ask for information if necessary. (we will not use your email to spam ads, rest assured).
+    </p>
+    <p [hidden]="isConnected">If you have an account, log in. The benefit of having an account is to see every published statement. Understand, you
+      can also delete your account at any time.</p>
+    <p>as soon as you are ready, click on the button <strong [hidden]="!isConnected">start</strong> <strong [hidden]="isConnected">Continue without account</strong>. Thank you !</p>
+
+
     <button mat-button routerLink="/signin" [hidden]="isConnected">Sign in</button>
-    <button mat-button routerLink="/nest">Nest</button>
-    
     <button mat-button [hidden]="isConnected" (click)="step1()">Continue without account</button>
     <button mat-button [hidden]="!isConnected" (click)="step1()">Start</button>
   </div>
@@ -67,7 +71,9 @@
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Done</ng-template>
-          <p>You are now done. If you want to change your answers, click on return or click send to finalize your return. Thanking you.</p>
+          <p>You are now done. If you want to change your answers, click on return or click send to finalize your return. Thanking
+            you.
+          </p>
           <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-raised-button (click)="confirmDialog()">Send</button>

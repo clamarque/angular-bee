@@ -53,7 +53,7 @@ export class NestComponent implements OnInit {
         const control = (<FormArray>this.formGroup.controls['formArray']).at(0).patchValue({
           picture: file.name
         });
-
+        
       }
     }
   }

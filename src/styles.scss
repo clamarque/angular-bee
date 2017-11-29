@@ -221,6 +221,10 @@ app-nest {
     label {
         cursor: pointer;
     }
+
+    mat-card {
+        margin: 20px 0 0;
+    }
 }
 .mat-stepper-horizontal, .mat-stepper-vertical {
       width: 100%;
@@ -266,9 +270,24 @@ dialog-confirme {
 .analyzeLabel {
     font-size: 1rem;
 }
-  mat-progress-bar {
+
+mat-progress-bar {
       margin: 8px 0 ;
-  }
+}
+
+.mat-green {
+    background: #4CAF50;
+    color: #FFF;
+    border-radius: 50%;
+    padding: 6px;
+}
+
+.mat-red {
+    background: #F44336;
+    color: #FFF;
+    border-radius: 50%;
+    padding: 6px;
+}
 /*
  * FOOTER
  */ 

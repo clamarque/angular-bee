@@ -10,44 +10,29 @@
   </div>
 </div>
 
-<div class="dropzone-list">
-  <ul class="valid">
-    <li *ngFor="let file of fileList">
-      {{ file.name }}
-    </li>
-  </ul>
-  <ul class="invalid">
-    <li *ngFor="let file of invalidFiles">
-      {{ file.name }}
-    </li>
-  </ul>
+<div [hidden]="!onAnalyzed">
+  <mat-progress-bar mode="determinate" value="{{progress.percentage}}"></mat-progress-bar>
+  <div class="progressbar-text">{{progress.percentage}}%</div>
 </div>
 
-<div [hidden]="!onAnalyzed">
-    <mat-progress-bar mode="determinate" value="{{progress.percentage}}"></mat-progress-bar>
-    <div class="progressbar-text">{{progress.percentage}}%</div>
-  </div>
-
-  <div [hidden]="!isAnalyzed">
-    <mat-card class="card-bee">
-      <mat-card-header>
-        <mat-card-title>nom fichier</mat-card-title>
-        <mat-card-subtitle>date </mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="{{fileAnalyzedUrl}}" alt="Analyzed picture">
-      <mat-card-content>
-        <div class="fullwidth">
-          <mat-icon [ngStyle]="{backgroundColor: getColor()}" class="result-icon">{{getIcon()}}</mat-icon>
-        </div>
-
-        <div *ngFor="let item of items">
-          <div class="analyzeItem">
-            <div class="analyzeLabel">{{item.description}} : {{convertScore(item.score)}} % </div>
-            <mat-progress-bar class="analyzeProgressbar" mode="determinate" [value]="convertScore(item.score)"></mat-progress-bar>
-          </div>
-        </div>
-
-      </mat-card-content>
-    </mat-card>
-
-  </div>
+<mat-card [hidden]="!isAnalyzed">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <span *ngIf="fileAnalyzedpercent >= 0.75">
+        <mat-icon class="mat-green">check</mat-icon>
+      </span>
+      <span *ngIf="fileAnalyzedpercent < 0.75">
+        <mat-icon class="mat-red">clear</mat-icon>
+      </span>
+    </div>
+    <mat-card-title>{{image_name}}</mat-card-title>
+    <mat-card-subtitle>{{image_date}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{image_preview}}" alt="Analyzed picture">
+  <mat-card-content>
+    <div *ngFor="let item of items">
+      <div class="analyzeLabel">{{item.description}} : {{convertScore(item.score)}} % </div>
+      <mat-progress-bar class="analyzeProgressbar" mode="determinate" [value]="convertScore(item.score)"></mat-progress-bar>
+    </div>
+  </mat-card-content>
+</mat-card>
