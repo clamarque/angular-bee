@@ -12,7 +12,6 @@
       can also delete your account at any time.</p>
     <p>as soon as you are ready, click on the button <strong [hidden]="!isConnected">start</strong> <strong [hidden]="isConnected">Continue without account</strong>. Thank you !</p>
 
-
     <button mat-button routerLink="/signin" [hidden]="isConnected">Sign in</button>
     <button mat-button [hidden]="isConnected" (click)="step1()">Continue without account</button>
     <button mat-button [hidden]="!isConnected" (click)="step1()">Start</button>
@@ -28,18 +27,17 @@
           <h2>Localisation</h2>
           <app-google-map (placeLocation)="handleLocation($event)"></app-google-map>
           <h3>Or</h3>
-          <button mat-raised-button type="button" (click)="setLocation()">Set location</button>
-          <mat-input-container [hidden]="isSetLocation">
+          <button mat-raised-button type="button" (click)="enableLocation()">Set location</button>
+          <mat-input-container [hidden]="isEnableLocation">
             <input matInput placeholder="Latitude" formControlName="latitude" required>
           </mat-input-container>
-          <mat-input-container [hidden]="isSetLocation">
+          <mat-input-container [hidden]="isEnableLocation">
             <input matInput placeholder="Longitude" formControlName="longitude" required>
           </mat-input-container>
           <div>
-            <button mat-button matStepperNext>Next</button>
+            <button type="button" mat-button matStepperNext>Next</button>
           </div>
         </mat-step>
-
 
         <mat-step formGroupName="1" [stepControl]="formArray.get([1])">
           <ng-template matStepLabel>Fill out your coordinates</ng-template>
@@ -65,8 +63,8 @@
             <input matInput placeholder="comment" formControlName="comment">
           </mat-input-container>
           <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext [disabled]="formGroup.pristine">Next</button>
+            <button type="button" mat-button matStepperPrevious>Back</button>
+            <button type="button" mat-button matStepperNext [disabled]="formGroup.pristine">Next</button>
           </div>
         </mat-step>
         <mat-step>
@@ -75,17 +73,14 @@
             you.
           </p>
           <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-raised-button (click)="confirmDialog()">Send</button>
+            <button type="button" mat-button matStepperPrevious>Back</button>
+            <button mat-raised-button>Send</button>
           </div>
         </mat-step>
 
       </mat-vertical-stepper>
     </form>
 
-
-
   </div>
-
 </div>
 <app-footer></app-footer>

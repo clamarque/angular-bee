@@ -7,7 +7,7 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class UploadService {
 
-  private basePath = '/items';
+  private basePath = '/declarations-auth';
 
   constructor(private db: AngularFireDatabase) { }
 
@@ -38,7 +38,8 @@ export class UploadService {
           image: fileUpload,
           results: results,
           date: Date(),
-          percent: percent
+          percent: percent,
+          declaration: []
       });
     }
 }

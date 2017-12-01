@@ -34,6 +34,19 @@ export class AuthService {
             .catch(error => callback(error));
     }
 
+    createDeclaration(data: any, callback: any) {
+        return this.db.list('items').push({ data})
+           .then(success => callback())
+    }
+
+    setDeclaration() {
+        let KeyArray = []
+        firebase.database().ref('items').once('value', data => {
+        
+
+        })
+    }
+
     getCurrentEmail() {
         return firebase.auth().currentUser;
     }

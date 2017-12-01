@@ -230,6 +230,12 @@ app-nest {
       width: 100%;
 }
 
+.spinner_analyse {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
 .dropzone {
     display: table;
     height: 100%;
