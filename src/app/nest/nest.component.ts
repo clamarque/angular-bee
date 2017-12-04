@@ -35,6 +35,13 @@ export class NestComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result == 'yes') {
+        if(this.isConnected == true) {
+
+
+        }
+        else {
+        
+        }
         this.authService.createDeclaration(this.formGroup.value, (error) => {
           if (!error) {
             this.formGroup.reset();

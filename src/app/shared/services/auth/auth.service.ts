@@ -35,8 +35,12 @@ export class AuthService {
     }
 
     createDeclaration(data: any, callback: any) {
-        return this.db.list('items').push({ data})
+        return this.db.list('declarations-auth').push({ data})
            .then(success => callback())
+    }
+
+    createDeclarationLogged(data: any, callback: any) {
+        
     }
 
     setDeclaration() {

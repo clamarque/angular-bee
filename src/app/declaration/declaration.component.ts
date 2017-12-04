@@ -58,6 +58,7 @@ export class DeclarationComponent implements OnInit {
 
           this.fileAnalyzedName = file.name;
           this.fileAnalyzedpercent = this.analyzePicture(response.json().responses);
+          console.log('currentFile declaration', this.currentFileUpload);
           this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress, this.currentUid, response.json().responses, this.fileAnalyzedpercent);          
           console.log("URL : " + this.fileAnalyzedUrl);
           this.isAnalyzed = true;

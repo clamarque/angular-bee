@@ -44,6 +44,7 @@ export class GoogleVisionComponent implements OnInit {
           
           this.fileAnalyzedpercent = this.analyzePicture(response.json().responses);
           console.log('fileAnalyzepercent', this.fileAnalyzedpercent)
+          
           this.onAnalyzed = false;
           this.isAnalyzed = true;
 
@@ -51,9 +52,13 @@ export class GoogleVisionComponent implements OnInit {
 
           for (let r of res[0].webDetection.webEntities) {
             if (r.description != null) {
-              if (r.description.indexOf("Asian predatory wasp:") != -1 || r.description.indexOf("Asian giant hornet") != -1) {
+              console.log('description race', r.description)
+              if (r.description.indexOf("Asian predatory wasp") != -1 || r.description.indexOf("Asian giant hornet") != -1) {
                 //push picture in firebase
+                console.log('push picture in firebase');
+                console.log('currentFile', this.currentFileUpload)
                 this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress, this.currentId, response.json().responses, this.fileAnalyzedpercent);
+                
               }
             }
           }
