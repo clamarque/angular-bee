@@ -21,7 +21,7 @@ export class AdDeclaration {
 export class AuthService {
     public uid: string = '';
 
-    constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
+    constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase, private afs: AngularFirestore) {
         this.afAuth.authState.subscribe(auth => {
             if (auth != null) this.uid = auth.uid
         })
@@ -34,9 +34,10 @@ export class AuthService {
             .catch(error => callback(error));
     }
 
-    createDeclaration(data: any, callback: any) {
-        return this.db.list('declarations-auth').push({ data})
-           .then(success => callback())
+    createDeclaration(datas: any, callback: any) {
+        this.afs.collection('statements').add(Object.assign({}, datas))
+            .then(success => callback())
+            .catch(error => callback(error))
     }
 
     createDeclarationLogged(data: any, callback: any) {

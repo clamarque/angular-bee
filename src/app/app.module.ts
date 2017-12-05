@@ -67,7 +67,7 @@ import { FileSelectorDirective } from './shared/directives/file-selector.directi
     ReactiveFormsModule,
     HttpModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
     routing
   ],

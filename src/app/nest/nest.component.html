@@ -18,12 +18,12 @@
   </div>
 
   <div [hidden]="isStart">
-    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
-      <mat-vertical-stepper formArrayName="formArray" [linear]="true">
-        <mat-step formGroupName="0" [stepControl]="formArray.get([0])">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup)" novalidate>
+      <mat-vertical-stepper formArrayName="statement" [linear]="true">
+        <mat-step formGroupName="0" [stepControl]="statement?.get([0])">
           <ng-template matStepLabel>Informations on the nest</ng-template>
           <h2>Pictures from the nest</h2>
-          <app-google-vision (fileChange)="handleFileSelected($event)"></app-google-vision>
+          <app-google-vision (fileChange)="handleFileSelected($event)" (dataVision)="handleDataVision($event)"></app-google-vision>
           <h2>Localisation</h2>
           <app-google-map (placeLocation)="handleLocation($event)"></app-google-map>
           <h3>Or</h3>
@@ -39,7 +39,7 @@
           </div>
         </mat-step>
 
-        <mat-step formGroupName="1" [stepControl]="formArray.get([1])">
+        <mat-step formGroupName="1" [stepControl]="statement?.get([1])">
           <ng-template matStepLabel>Fill out your coordinates</ng-template>
 
           <mat-input-container>

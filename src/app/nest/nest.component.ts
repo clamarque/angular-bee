@@ -28,19 +28,19 @@ export class NestComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar) { }
 
-  get formArray(): AbstractControl | null { return this.formGroup.get('formArray') };
+  get formArray(): AbstractControl | null { return this.formGroup.get('statement') };
 
   confirmDialog() {
     let dialogRef = this.dialog.open(DialogConfirme);
 
     dialogRef.afterClosed().subscribe(result => {
       if (result == 'yes') {
-        if(this.isConnected == true) {
+        if (this.isConnected == true) {
 
 
         }
         else {
-        
+
         }
         this.authService.createDeclaration(this.formGroup.value, (error) => {
           if (!error) {
@@ -63,13 +63,27 @@ export class NestComponent implements OnInit {
     this.isEnableLocation = false;
   }
 
+  handleDataVision(datas) {
+    console.log('data from vision:', datas)
+    if (datas.length > 0) {
+      for (let data of datas) {
+        console.log('data sample:', data);
+        (<FormArray>this.formGroup.controls['statement']).at(0).patchValue({
+          image: data.image,
+          percent: data.percent,
+          results: data.results
+        })
+      }
+    }
+  }
+
   handleFileSelected(files) {
     if (files.length > 0) {
       for (let file of files) {
         // https://stackoverflow.com/questions/39229398/how-to-update-controls-of-formarray
         // set value picture        
-        (<FormArray>this.formGroup.controls['formArray']).at(0).patchValue({
-          picture: file.name
+        (<FormArray>this.formGroup.controls['statement']).at(0).patchValue({
+          picture_name: file.name
         });
       }
     }
@@ -78,7 +92,7 @@ export class NestComponent implements OnInit {
   handleLocation(location) {
     if (location.length > 0) {
       for (let locate of location) {
-        (<FormArray>this.formGroup.controls['formArray']).at(0).patchValue({
+        (<FormArray>this.formGroup.controls['statement']).at(0).patchValue({
           latitude: locate.latitude,
           longitude: locate.longitude
         })
@@ -86,7 +100,8 @@ export class NestComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmit(form: FormGroup) {
+    console.log(form.value)
     if (this.formGroup.status != 'VALID') this.snackBar.open('The form is not valid', 'hide', { duration: 5000 })
     else this.confirmDialog();
   }
@@ -95,11 +110,14 @@ export class NestComponent implements OnInit {
     this.authService.isLoggin().subscribe(authStatus => { return authStatus === true ? this.isConnected = true : this.isConnected = false; })
 
     this.formGroup = this._formBuilder.group({
-      formArray: this._formBuilder.array([
+      statement: this._formBuilder.array([
         this._formBuilder.group({
-          picture: [''],
+          image: [''],
           latitude: [0, Validators.required],
-          longitude: [0, Validators.required]
+          longitude: [0, Validators.required],
+          picture_name: [''],
+          percent: [0],
+          results: ['']
         }),
         this._formBuilder.group({
           name: ['', Validators.required],

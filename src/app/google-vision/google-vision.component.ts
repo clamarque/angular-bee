@@ -9,10 +9,12 @@ import { Upload } from '../shared/services/upload/upload';
 })
 
 export class GoogleVisionComponent implements OnInit {
+  array_vision = [];  
   currentId: string = '';
   private fileList: any = [];
   private invalidFiles: any = [];
   @Output() fileChange = new EventEmitter();
+  @Output() dataVision = new EventEmitter();
   currentFileUpload: Upload;
   fileAnalyzedpercent: number;
   items: any[];
@@ -25,43 +27,83 @@ export class GoogleVisionComponent implements OnInit {
 
   constructor(private authService: AuthService, private vision: GoogleCloudVisionService, private uploadService: UploadService) { }
 
-  onFilesChange(fileList: FileList) {
+  onFilesChange(fileList) {
+
+    this.fileList = {
+      lastModified: '',
+      lastModifiedDate: '',
+      name: '',
+      size: 0,
+      type: '',
+      webkitRelativePath: ''
+    }
     this.fileList = fileList;
+    
+
     console.log('fileList:', this.fileList);
     this.onAnalyzed = true;
     this.isAnalyzed = false;
     let reader = new FileReader();
-    this.currentFileUpload = new Upload(this.fileList);
-    console.log('currentFile:', this.currentFileUpload);
 
     for (let file of this.fileList) {
+
+      console.log(file)
+     
+
+      //this.currentFileUpload = new Upload(file)
+      this.currentFileUpload = {
+        $key: '',
+        file: file,
+        name: '',
+        url: '',
+        progress: 0,
+        createdAt: new Date()
+      }
+
+      console.log('currentfileupload', this.currentFileUpload)
+      let newFile = this.currentFileUpload
       reader.readAsDataURL(file);
       this.image_name = file.name;
       this.image_date = file.lastModifiedDate;
       reader.onload = (e: any) => {
         this.image_preview = e.target.result;
         this.vision.getLabels(e.target.result.split(',')[1]).subscribe(response => {
-          
+
           this.fileAnalyzedpercent = this.analyzePicture(response.json().responses);
-          console.log('fileAnalyzepercent', this.fileAnalyzedpercent)
-          
+
           this.onAnalyzed = false;
           this.isAnalyzed = true;
 
           let res = response.json().responses;
+          this.array_vision = [];
+       
+          this.array_vision.push({
+            image: this.currentFileUpload,
+            percent: this.fileAnalyzedpercent,
+            results: res
+          })
+
+          this.dataVision.emit(this.array_vision)
 
           for (let r of res[0].webDetection.webEntities) {
             if (r.description != null) {
-              console.log('description race', r.description)
+
               if (r.description.indexOf("Asian predatory wasp") != -1 || r.description.indexOf("Asian giant hornet") != -1) {
                 //push picture in firebase
-                console.log('push picture in firebase');
-                console.log('currentFile', this.currentFileUpload)
+
                 this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress, this.currentId, response.json().responses, this.fileAnalyzedpercent);
-                
+
+              
+
               }
             }
           }
+
+          
+          
+
+
+
         })
       }
     }
@@ -70,7 +112,6 @@ export class GoogleVisionComponent implements OnInit {
   }
 
   analyzePicture(results) {
-    console.log('analyzePicture results:', results)
     let maxScore = 0;
     this.items = [];
     if (results[0].webDetection && results[0].webDetection.webEntities) {
