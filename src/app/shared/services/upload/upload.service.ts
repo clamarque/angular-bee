@@ -10,6 +10,7 @@ import * as firebase from 'firebase/app';
 export class UploadService {
 
   private basePath = '/statements';
+  result_vision = [];
 
   constructor(private db: AngularFireDatabase, private afs: AngularFirestore) { }
 
@@ -33,10 +34,16 @@ export class UploadService {
         fileUpload.name = fileUpload.file.name;
         fileUpload.createdAt = new Date();
         //this.saveFileData(fileUpload, currentUid, results, percent);
-
+        this.result_vision.push({
+          name: fileUpload.file.name,
+          createdAt: new Date(),
+          url: uploadTask.snapshot.downloadURL
+        })
 
       }
     );
+    console.log('result vision:', this.result_vision)
+    return this.result_vision;
   }
 
   saveFileData(fileUpload: Upload, currentUid: string, results: string, percent: number) {

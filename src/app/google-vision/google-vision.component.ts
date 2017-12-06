@@ -9,7 +9,8 @@ import { Upload } from '../shared/services/upload/upload';
 })
 
 export class GoogleVisionComponent implements OnInit {
-  array_vision = [];  
+  array_vision = [];
+  array_file = [];
   currentId: string = '';
   private fileList: any = [];
   private invalidFiles: any = [];
@@ -18,9 +19,11 @@ export class GoogleVisionComponent implements OnInit {
   currentFileUpload: Upload;
   fileAnalyzedpercent: number;
   items: any[];
-  image_preview;
-  image_name;
   image_date;
+  image_name;  
+  image_preview;
+  img_result: any;
+  img_upload: any;
   onAnalyzed: boolean = false;
   isAnalyzed: boolean = false;
   public progress: { percentage: number } = { percentage: 0 };
@@ -28,82 +31,63 @@ export class GoogleVisionComponent implements OnInit {
   constructor(private authService: AuthService, private vision: GoogleCloudVisionService, private uploadService: UploadService) { }
 
   onFilesChange(fileList) {
+    console.log('filelist:', fileList)
 
-    this.fileList = {
-      lastModified: '',
-      lastModifiedDate: '',
-      name: '',
-      size: 0,
-      type: '',
-      webkitRelativePath: ''
-    }
     this.fileList = fileList;
-    
-
     console.log('fileList:', this.fileList);
     this.onAnalyzed = true;
     this.isAnalyzed = false;
     let reader = new FileReader();
 
     for (let file of this.fileList) {
+      console.log('file:', file);
+      this.array_file.push({
+        name: file.name,
+        lastModifiedDate: file.lastModifiedDate,
+        size: file.size,
+        type: file.type
+      })
 
-      console.log(file)
-     
+      console.log('array file:', this.array_file)
+       
+      this.currentFileUpload = new Upload(file)
+      
+      let img_notUpload = Object.assign({}, this.currentFileUpload);
 
-      //this.currentFileUpload = new Upload(file)
-      this.currentFileUpload = {
-        $key: '',
-        file: file,
-        name: '',
-        url: '',
-        progress: 0,
-        createdAt: new Date()
-      }
-
-      console.log('currentfileupload', this.currentFileUpload)
-      let newFile = this.currentFileUpload
       reader.readAsDataURL(file);
       this.image_name = file.name;
       this.image_date = file.lastModifiedDate;
       reader.onload = (e: any) => {
         this.image_preview = e.target.result;
-        this.vision.getLabels(e.target.result.split(',')[1]).subscribe(response => {
+        this.vision.getLabels(e.target.result.split(',')[1]).subscribe(responses => {
 
-          this.fileAnalyzedpercent = this.analyzePicture(response.json().responses);
-
+          this.fileAnalyzedpercent = this.analyzePicture(responses.json().responses);
           this.onAnalyzed = false;
           this.isAnalyzed = true;
-
-          let res = response.json().responses;
           this.array_vision = [];
+          
+          let response = responses.json().responses;
        
-          this.array_vision.push({
-            image: this.currentFileUpload,
-            percent: this.fileAnalyzedpercent,
-            results: res
-          })
-
-          this.dataVision.emit(this.array_vision)
-
-          for (let r of res[0].webDetection.webEntities) {
+          for (let r of response[0].webDetection.webEntities) {
             if (r.description != null) {
-
               if (r.description.indexOf("Asian predatory wasp") != -1 || r.description.indexOf("Asian giant hornet") != -1) {
                 //push picture in firebase
-
-                this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress, this.currentId, response.json().responses, this.fileAnalyzedpercent);
-
-              
-
+                this.img_upload = this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress, this.currentId, response, this.fileAnalyzedpercent)
+                console.log('img_upload:', this.img_upload)
               }
             }
           }
 
+          if (!this.img_upload) this.img_result = this.array_file
+          else this.img_result = this.img_upload 
           
-          
+          this.array_vision.push({
+            image: this.img_result,
+            percent: this.fileAnalyzedpercent,
+            results: response
+          })
 
-
-
+          this.dataVision.emit(this.array_vision)
         })
       }
     }

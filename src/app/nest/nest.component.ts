@@ -67,7 +67,8 @@ export class NestComponent implements OnInit {
     console.log('data from vision:', datas)
     if (datas.length > 0) {
       for (let data of datas) {
-        console.log('data sample:', data);
+        //delete data.image.file
+        console.log('data file:', data.image);
         (<FormArray>this.formGroup.controls['statement']).at(0).patchValue({
           image: data.image,
           percent: data.percent,
